@@ -24,7 +24,15 @@ from pathlib import Path
 
 from config import AGGREGATED_XML, BASE_DIR, TOURNAMENT_TITLE, WORKING_DIR
 from nomination_io import ensure_nomination_files
-from utils import clubs_equivalent, discover_rounds, list_tournament_xml_files, names_are_swapped
+from utils import (
+    bez_diakritiky,
+    clubs_equivalent,
+    discover_rounds,
+    levenshtein,
+    list_tournament_xml_files,
+    names_are_swapped,
+    normalizuj,
+)
 
 
 DISCIPLINE_ORDER = {
@@ -118,21 +126,52 @@ def load_results_from_xml(path: Path) -> list[dict]:
     return results
 
 
+def _name_has_diacritics(firstname: str, lastname: str) -> bool:
+    full = f"{firstname}{lastname}"
+    return full != bez_diakritiky(full)
+
+
+def _prefer_display_name(data: dict, firstname: str, lastname: str) -> None:
+    """Preferuj variantu jmena s diakritikou."""
+    if not firstname or not lastname:
+        return
+    if not data["firstname"]:
+        data["firstname"] = firstname
+        data["lastname"] = lastname
+        return
+    current_has = _name_has_diacritics(data["firstname"], data["lastname"])
+    new_has = _name_has_diacritics(firstname, lastname)
+    if new_has and not current_has:
+        data["firstname"] = firstname
+        data["lastname"] = lastname
+
+
 def merge_duplicate_athletes(category_data: dict) -> None:
     def is_same_athlete(first1: str, last1: str, club1: str, data1: dict, first2: str, last2: str, club2: str, data2: dict) -> bool:
-        if first1 == first2 and last1 == last2:
+        # Stejne jmeno i bez diakritiky (Nikonorova / Nikonorova)
+        if normalizuj(first1) == normalizuj(first2) and normalizuj(last1) == normalizuj(last2):
             return clubs_equivalent(club1, club2) or not club1 or not club2
         if names_are_swapped(first1, last1, first2, last2) and clubs_equivalent(club1, club2):
             return True
         if data1["competitor_ids"] & data2["competitor_ids"]:
             return True
+        # Transliterace / preklep se stejnym datem narozeni (Kravcenko / Kravchenko)
+        birthday1 = (data1.get("birthday") or "").strip()
+        birthday2 = (data2.get("birthday") or "").strip()
+        if (
+            birthday1
+            and birthday1 == birthday2
+            and normalizuj(first1) == normalizuj(first2)
+            and clubs_equivalent(club1, club2)
+            and levenshtein(normalizuj(last1), normalizuj(last2)) <= 1
+        ):
+            return True
         return False
 
     def merge_into(data1: dict, data2: dict) -> None:
+        _prefer_display_name(data1, data2["firstname"], data2["lastname"])
         if len(data2["starts"]) > len(data1["starts"]):
-            data1["firstname"] = data2["firstname"]
-            data1["lastname"] = data2["lastname"]
-            data1["birthday"] = data2["birthday"]
+            data1["birthday"] = data2["birthday"] or data1["birthday"]
             data1["club"] = data2["club"] or data1["club"]
             data1["club_id"] = data2["club_id"] or data1["club_id"]
         data1["competitor_ids"].update(data2["competitor_ids"])
@@ -190,9 +229,10 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
 
     for row in all_results:
         category_key = row["category_key"]
+        # Klic bez diakritiky: Nikonorova a Nikonorova = 1 zavodnik
         athlete_key = (
-            row["firstname"].lower().strip(),
-            row["lastname"].lower().strip(),
+            normalizuj(row["firstname"]),
+            normalizuj(row["lastname"]),
             row["birthday"],
         )
         athlete = category_data[category_key][athlete_key]
@@ -203,6 +243,11 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
             athlete["birthday"] = row["birthday"]
             athlete["club"] = row["club"]
             athlete["club_id"] = row["club_id"]
+        else:
+            _prefer_display_name(athlete, row["firstname"], row["lastname"])
+            if not athlete["club"]:
+                athlete["club"] = row["club"]
+                athlete["club_id"] = row["club_id"]
 
         athlete["competitor_ids"].add(row["competitor_id"])
         athlete["total_points"] += row["points"]
