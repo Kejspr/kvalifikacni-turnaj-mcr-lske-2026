@@ -518,18 +518,24 @@ def generate_html(
     for category_name in sorted_categories:
         categories_by_discipline[discipline_from_category(category_name)].append(category_name)
 
-    discipline_order = [
+    # Preferovane poradi (beginner i klasicke kata/kumite); zbytek abecedne.
+    preferred_discipline_order = [
         "KARATE AGILITY",
         "KIHON IDO",
         "KUMITE BALLOON",
         "KATA BEGINNER",
         "KUMITE BEGINNER",
+        "KATA",
+        "KUMITE",
     ]
+    present_disciplines = set(categories_by_discipline.keys())
+    discipline_order = [d for d in preferred_discipline_order if d in present_disciplines]
+    discipline_order.extend(sorted(present_disciplines - set(discipline_order)))
     filter_data = {
         "clubs": all_clubs,
-        "disciplines": [d for d in discipline_order if d in categories_by_discipline],
+        "disciplines": discipline_order,
         "categoriesByDiscipline": {
-            d: categories_by_discipline[d] for d in discipline_order if d in categories_by_discipline
+            d: categories_by_discipline[d] for d in discipline_order
         },
         "allCategories": sorted_categories,
     }

@@ -280,10 +280,14 @@ def ensure_nomination_files(aggregated_path: Path) -> List[Path]:
 
     root = ET.parse(aggregated_path).getroot()
     clubs = collect_clubs_from_xml(root)
+    keep_names = {club_nomination_filename(club) for club in clubs}
     created: List[Path] = []
 
     for directory, declined in ((NOMINATIONS_DIR, False), (NOMINATIONS_DECLINED_DIR, True)):
         directory.mkdir(parents=True, exist_ok=True)
+        for path in directory.glob("*.txt"):
+            if path.name not in keep_names:
+                path.unlink()
         for club in clubs:
             target = directory / club_nomination_filename(club)
             if not target.exists():

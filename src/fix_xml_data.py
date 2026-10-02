@@ -25,7 +25,14 @@ from datetime import datetime
 from pathlib import Path
 
 from config import CLUB_NAME_MAP, FIX_LOG_PREFIX, ORIGINAL_DIR, WORKING_DIR
-from utils import assign_working_files, list_tournament_xml_files, names_are_swapped, normalizuj, normalize_club
+from utils import (
+    assign_working_files,
+    is_allowed_club,
+    list_tournament_xml_files,
+    names_are_swapped,
+    normalizuj,
+    normalize_club,
+)
 
 
 def xml_text(element, tag: str) -> str:
@@ -100,7 +107,7 @@ def apply_fixes(
     canonical_names: dict[str, tuple[str, str]],
     token_canonical: dict[tuple[str, frozenset[str]], tuple[str, str]],
 ) -> tuple[dict, list[str], bool]:
-    stats = {"clubs": 0, "categories": 0, "names": 0}
+    stats = {"clubs": 0, "categories": 0, "names": 0, "excluded": 0, "empty_categories": 0}
     changes: list[str] = []
     modified = False
     root = tree.getroot()
@@ -136,7 +143,7 @@ def apply_fixes(
                 stats["categories"] += 1
                 modified = True
 
-        for result in category.findall("result"):
+        for result in list(category.findall("result")):
             club_elem = result.find("club")
             club_text = ""
             if club_elem is not None and club_elem.text:
@@ -151,6 +158,18 @@ def apply_fixes(
                         club_text = updated
                         stats["clubs"] += 1
                         modified = True
+
+            if not is_allowed_club(club_text):
+                firstname = xml_text(result, "firstname")
+                lastname = xml_text(result, "lastname")
+                athlete = f"{firstname} {lastname}".strip() or "?"
+                club_label = club_text or "(bez klubu)"
+                message = f"  mimo LSKe: odstraneno '{athlete}' ({club_label})"
+                changes.append(message)
+                category.remove(result)
+                stats["excluded"] += 1
+                modified = True
+                continue
 
             competitor_id = xml_text(result, "competitor_id")
             firstname_elem = result.find("firstname")
@@ -196,7 +215,46 @@ def apply_fixes(
                 reason,
             )
 
+    for category in list(root.findall("category")):
+        if not category.findall("result"):
+            disc = xml_text(category, "disciplina")
+            kat1 = xml_text(category, "kategorie1")
+            kat2 = xml_text(category, "kategorie2")
+            label = " ".join(part for part in (disc, kat1, kat2) if part)
+            message = f"  prazdna kategorie po filtru LSKe: odstraneno '{label or '?'}'"
+            changes.append(message)
+            root.remove(category)
+            stats["empty_categories"] += 1
+            modified = True
+
+    if stats["excluded"]:
+        _refresh_tournament_counts(root)
+
     return stats, changes, modified
+
+
+def _refresh_tournament_counts(root: ET.Element) -> None:
+    """Prepocita souhrnne citace v hlavicce turnaje po vyfiltrovani vysledku."""
+    starts = 0
+    competitor_ids: set[str] = set()
+    clubs: set[str] = set()
+    for result in root.findall(".//result"):
+        starts += 1
+        competitor_id = xml_text(result, "competitor_id")
+        if competitor_id:
+            competitor_ids.add(competitor_id)
+        club = xml_text(result, "club")
+        if club:
+            clubs.add(club)
+
+    for tag, value in (
+        ("number_of_starts", str(starts)),
+        ("number_of_competitors", str(len(competitor_ids))),
+        ("number_of_clubs", str(len(clubs))),
+    ):
+        elem = root.find(tag)
+        if elem is not None:
+            elem.text = value
 
 
 def build_fixed_bytes(
@@ -231,7 +289,7 @@ def fix_xml_file(
     canonical_names: dict[str, tuple[str, str]],
     token_canonical: dict[tuple[str, frozenset[str]], tuple[str, str]],
 ) -> tuple[dict, list[str]]:
-    stats = {"clubs": 0, "categories": 0, "names": 0, "skipped": 0}
+    stats = {"clubs": 0, "categories": 0, "names": 0, "excluded": 0, "empty_categories": 0, "skipped": 0}
 
     try:
         if working_file_is_current(source_path, target_path, canonical_names, token_canonical):
@@ -248,6 +306,8 @@ def fix_xml_file(
         stats["clubs"] = fix_stats["clubs"]
         stats["categories"] = fix_stats["categories"]
         stats["names"] = fix_stats["names"]
+        stats["excluded"] = fix_stats["excluded"]
+        stats["empty_categories"] = fix_stats["empty_categories"]
 
         for message in changes:
             print(message)
@@ -315,7 +375,15 @@ def main() -> None:
             print(f"  - {path.name}")
         print()
 
-    totals = {"clubs": 0, "categories": 0, "names": 0, "skipped": 0, "written": 0}
+    totals = {
+        "clubs": 0,
+        "categories": 0,
+        "names": 0,
+        "excluded": 0,
+        "empty_categories": 0,
+        "skipped": 0,
+        "written": 0,
+    }
     log_lines = [
         "Mapovani souboru:",
         *[
@@ -339,9 +407,16 @@ def main() -> None:
         stats, changes = fix_xml_file(item.source, item.target, canonical_names, token_canonical)
         log_lines.extend(changes)
 
+        no_data_changes = (
+            stats["clubs"] == 0
+            and stats["categories"] == 0
+            and stats["names"] == 0
+            and stats["excluded"] == 0
+            and stats["empty_categories"] == 0
+        )
         if stats["skipped"]:
             log_lines.append("  SKIP - pracovni soubor je aktualni")
-        elif stats["clubs"] == 0 and stats["categories"] == 0 and stats["names"] == 0:
+        elif no_data_changes:
             print("  Zadne zmeny v datech")
             log_lines.append("  OK - zadne zmeny v datech")
 
@@ -350,7 +425,8 @@ def main() -> None:
         else:
             summary = (
                 f"  -> Opraveno: {stats['clubs']} klubu, "
-                f"{stats['categories']} kategorii, {stats['names']} jmen"
+                f"{stats['categories']} kategorii, {stats['names']} jmen, "
+                f"mimo LSKe: {stats['excluded']}"
             )
             totals["written"] += 1
         log_lines.append(summary)
@@ -359,6 +435,8 @@ def main() -> None:
         totals["clubs"] += stats["clubs"]
         totals["categories"] += stats["categories"]
         totals["names"] += stats["names"]
+        totals["excluded"] += stats["excluded"]
+        totals["empty_categories"] += stats["empty_categories"]
         totals["skipped"] += stats["skipped"]
 
     summary_lines = [
@@ -372,6 +450,8 @@ def main() -> None:
         f"  Opraveno klubu:      {totals['clubs']}",
         f"  Opraveno kategorii:  {totals['categories']}",
         f"  Opraveno jmen:       {totals['names']}",
+        f"  Mimo LSKe odstraneno:{totals['excluded']}",
+        f"  Prazdne kategorie:   {totals['empty_categories']}",
     ]
     for line in summary_lines:
         print(line)

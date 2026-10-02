@@ -102,4 +102,18 @@ CLUB_NAME_MAP = {
     "Karate ToJo": "Karate ToJo, spolek",
     "SK Karate Shotokan Liberec": "SK KARATE - SHOTOKAN LIBEREC, z.s.",
     "Shotokan Sport Centrum Česká Lípa": "Shotokan Sport Centrum Česká Lípa z.s.",
+    # Bižuterie: stary nazev (1. kolo) -> aktualni z.s.
+    "TJ Bižuterie, o.s., oddíl KABU Jablonec": "Tělovýchovná jednota Bižuterie, z.s.",
 }
+
+# ---------------------------------------------------------------------------
+# Platne kluby LSKe (po aplikaci CLUB_NAME_MAP)
+# Vysledky jinych klubu se pri fix odstrani z pracovni/ - jako by nebyly.
+# ---------------------------------------------------------------------------
+ALLOWED_CLUBS = frozenset({
+    "GRYF z.s.",
+    "SK KARATE - SHOTOKAN LIBEREC, z.s.",
+    "Shotokan Sport Centrum Česká Lípa z.s.",
+    "Tělovýchovná jednota Bižuterie, z.s.",
+    "SHOBU Academy",
+})

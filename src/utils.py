@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
-from config import CLUB_NAME_MAP
+from config import ALLOWED_CLUBS, CLUB_NAME_MAP
 
 @dataclass
 class Zavodnik:
@@ -47,6 +47,13 @@ def normalize_club(club: str) -> str:
         return ""
     club = club.strip()
     return CLUB_NAME_MAP.get(club, club)
+
+
+def is_allowed_club(club: str) -> bool:
+    """True pokud klub patri mezi platne LSKe kluby (po sjednoceni aliasu)."""
+    if not club:
+        return False
+    return normalize_club(club) in ALLOWED_CLUBS
 
 
 def clubs_equivalent(club1: str, club2: str) -> bool:
