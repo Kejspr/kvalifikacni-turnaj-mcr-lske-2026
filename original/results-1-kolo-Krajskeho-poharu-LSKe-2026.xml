@@ -1,0 +1,4176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tournament>
+
+	<id>53</id>
+
+	<name><![CDATA[1. kolo Krajského poháru LSKe 2026]]></name>
+
+	<source>lske.karate-draw.cz</source>
+
+	<date>2026-02-15</date>
+
+	<number_of_competitors>101</number_of_competitors>
+
+	<number_of_starts>166</number_of_starts>
+
+	<number_of_clubs>8</number_of_clubs>
+
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U10</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4978</competitor_id>
+
+			<firstname><![CDATA[Matěj]]></firstname>
+
+			<lastname><![CDATA[Rybín]]></lastname>
+			
+			<birthday>1483311600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4955</competitor_id>
+
+			<firstname><![CDATA[Benjamin]]></firstname>
+
+			<lastname><![CDATA[Minařík]]></lastname>
+			
+			<birthday>1521932400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4956</competitor_id>
+
+			<firstname><![CDATA[Matyáš]]></firstname>
+
+			<lastname><![CDATA[Raich]]></lastname>
+			
+			<birthday>1509404400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dívky U10</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>6</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4957</competitor_id>
+
+			<firstname><![CDATA[Julie]]></firstname>
+
+			<lastname><![CDATA[Dittrichová]]></lastname>
+			
+			<birthday>1509922800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4958</competitor_id>
+
+			<firstname><![CDATA[Marie]]></firstname>
+
+			<lastname><![CDATA[Hertíková]]></lastname>
+			
+			<birthday>1498600800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4980</competitor_id>
+
+			<firstname><![CDATA[Nela]]></firstname>
+
+			<lastname><![CDATA[Skorčíková]]></lastname>
+			
+			<birthday>1546297200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4959</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Reyneltová]]></lastname>
+			
+			<birthday>1496008800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4960</competitor_id>
+
+			<firstname><![CDATA[Tea]]></firstname>
+
+			<lastname><![CDATA[Zichová]]></lastname>
+			
+			<birthday>1492552800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4979</competitor_id>
+
+			<firstname><![CDATA[Anika]]></firstname>
+
+			<lastname><![CDATA[Němcová]]></lastname>
+			
+			<birthday>1516230000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U11</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U11]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>5</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4982</competitor_id>
+
+			<firstname><![CDATA[Petr]]></firstname>
+
+			<lastname><![CDATA[Skorčík]]></lastname>
+			
+			<birthday>1477432800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4981</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Lutsiuk]]></lastname>
+			
+			<birthday>1474322400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4962</competitor_id>
+
+			<firstname><![CDATA[David]]></firstname>
+
+			<lastname><![CDATA[Jarolím]]></lastname>
+			
+			<birthday>1466114400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4961</competitor_id>
+
+			<firstname><![CDATA[Michal]]></firstname>
+
+			<lastname><![CDATA[Janáček]]></lastname>
+			
+			<birthday>1452812400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4963</competitor_id>
+
+			<firstname><![CDATA[Tobiáš]]></firstname>
+
+			<lastname><![CDATA[Minařík]]></lastname>
+			
+			<birthday>1463868000</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>6</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dívky U11</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U11]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4964</competitor_id>
+
+			<firstname><![CDATA[Monika]]></firstname>
+
+			<lastname><![CDATA[Kadlecová]]></lastname>
+			
+			<birthday>1473890400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U12</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4983</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Hála]]></lastname>
+			
+			<birthday>1445986800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4965</competitor_id>
+
+			<firstname><![CDATA[Richard]]></firstname>
+
+			<lastname><![CDATA[Chmelař]]></lastname>
+			
+			<birthday>1447801200</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dívky U12</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>4</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4966</competitor_id>
+
+			<firstname><![CDATA[Šárka]]></firstname>
+
+			<lastname><![CDATA[Kurfiřtová]]></lastname>
+			
+			<birthday>1422140400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4984</competitor_id>
+
+			<firstname><![CDATA[Natálie]]></firstname>
+
+			<lastname><![CDATA[Jágrová]]></lastname>
+			
+			<birthday>1445900400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4986</competitor_id>
+
+			<firstname><![CDATA[Linda]]></firstname>
+
+			<lastname><![CDATA[Trávníčková]]></lastname>
+			
+			<birthday>1450220400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4985</competitor_id>
+
+			<firstname><![CDATA[Emílie]]></firstname>
+
+			<lastname><![CDATA[Součková]]></lastname>
+			
+			<birthday>1421622000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U13</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U13]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>7</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5019</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Pospíšil]]></lastname>
+			
+			<birthday>1395010800</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5049</competitor_id>
+
+			<firstname><![CDATA[Adam]]></firstname>
+
+			<lastname><![CDATA[Müller]]></lastname>
+			
+			<birthday>1394406000</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4988</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Zuzánek]]></lastname>
+			
+			<birthday>1392678000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4987</competitor_id>
+
+			<firstname><![CDATA[Kryštof]]></firstname>
+
+			<lastname><![CDATA[Kováč]]></lastname>
+			
+			<birthday>1393887600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4968</competitor_id>
+
+			<firstname><![CDATA[Bartoloměj]]></firstname>
+
+			<lastname><![CDATA[Žďánský]]></lastname>
+			
+			<birthday>1393714800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4989</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Michalec]]></lastname>
+			
+			<birthday>1390777200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5009</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Šolc]]></lastname>
+			
+			<birthday>1395788400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>4</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dívky U13</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U13]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4991</competitor_id>
+
+			<firstname><![CDATA[Kateřina]]></firstname>
+
+			<lastname><![CDATA[Stehlíková]]></lastname>
+			
+			<birthday>1397253600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4990</competitor_id>
+
+			<firstname><![CDATA[Eliška]]></firstname>
+
+			<lastname><![CDATA[Kalinová]]></lastname>
+			
+			<birthday>1414710000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U14</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>8</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4996</competitor_id>
+
+			<firstname><![CDATA[Mikuláš]]></firstname>
+
+			<lastname><![CDATA[Trávníček]]></lastname>
+			
+			<birthday>1380405600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4995</competitor_id>
+
+			<firstname><![CDATA[Vendelín]]></firstname>
+
+			<lastname><![CDATA[Pavlík]]></lastname>
+			
+			<birthday>1385766000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4969</competitor_id>
+
+			<firstname><![CDATA[Vladislav]]></firstname>
+
+			<lastname><![CDATA[Pinzari]]></lastname>
+			
+			<birthday>1369864800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4997</competitor_id>
+
+			<firstname><![CDATA[František]]></firstname>
+
+			<lastname><![CDATA[Němec]]></lastname>
+			
+			<birthday>1376344800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4993</competitor_id>
+
+			<firstname><![CDATA[Filip]]></firstname>
+
+			<lastname><![CDATA[Janovics]]></lastname>
+			
+			<birthday>1359673200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4992</competitor_id>
+
+			<firstname><![CDATA[Vilém]]></firstname>
+
+			<lastname><![CDATA[Antonický]]></lastname>
+			
+			<birthday>1366322400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5024</competitor_id>
+
+			<firstname><![CDATA[Mikuláš]]></firstname>
+
+			<lastname><![CDATA[Zbranek]]></lastname>
+			
+			<birthday>1370988000</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>4994</competitor_id>
+
+			<firstname><![CDATA[Kryštof-Cheyenne]]></firstname>
+
+			<lastname><![CDATA[Michel]]></lastname>
+			
+			<birthday>1376604000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>4</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dívky U14</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4999</competitor_id>
+
+			<firstname><![CDATA[Viktoria]]></firstname>
+
+			<lastname><![CDATA[Vojtenko]]></lastname>
+			
+			<birthday>1376258400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4998</competitor_id>
+
+			<firstname><![CDATA[Soňa-Pavlína]]></firstname>
+
+			<lastname><![CDATA[Pfeifrová]]></lastname>
+			
+			<birthday>1372111200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5025</competitor_id>
+
+			<firstname><![CDATA[Matylda]]></firstname>
+
+			<lastname><![CDATA[Brown]]></lastname>
+			
+			<birthday>1379887200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dorostenci</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>12</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5000</competitor_id>
+
+			<firstname><![CDATA[Filip-Akira]]></firstname>
+
+			<lastname><![CDATA[Sokol]]></lastname>
+			
+			<birthday>1311890400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5029</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Filipský]]></lastname>
+			
+			<birthday>1299452400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5028</competitor_id>
+
+			<firstname><![CDATA[Adam-Marian]]></firstname>
+
+			<lastname><![CDATA[Bartoň-Dobenín]]></lastname>
+			
+			<birthday>1316642400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5001</competitor_id>
+
+			<firstname><![CDATA[Robin]]></firstname>
+
+			<lastname><![CDATA[Hlaváček]]></lastname>
+			
+			<birthday>1316815200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5027</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Snížek]]></lastname>
+			
+			<birthday>1304114400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5030</competitor_id>
+
+			<firstname><![CDATA[Michal]]></firstname>
+
+			<lastname><![CDATA[Kopanica]]></lastname>
+			
+			<birthday>1308866400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5010</competitor_id>
+
+			<firstname><![CDATA[Tomáš]]></firstname>
+
+			<lastname><![CDATA[Fojtík]]></lastname>
+			
+			<birthday>1352156400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5014</competitor_id>
+
+			<firstname><![CDATA[Munkh-Uchral]]></firstname>
+
+			<lastname><![CDATA[Kherlenbaatar]]></lastname>
+			
+			<birthday>1320361200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>16.</position>
+
+			<competitor_id>5013</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Matoušek]]></lastname>
+			
+			<birthday>1354316400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>1</points>
+
+		</result>
+		<result>
+
+			<position>16.</position>
+
+			<competitor_id>5012</competitor_id>
+
+			<firstname><![CDATA[Lukáš]]></firstname>
+
+			<lastname><![CDATA[Lebeda]]></lastname>
+			
+			<birthday>1315087200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>1</points>
+
+		</result>
+		<result>
+
+			<position>16.</position>
+
+			<competitor_id>5020</competitor_id>
+
+			<firstname><![CDATA[Václav]]></firstname>
+
+			<lastname><![CDATA[Kupka]]></lastname>
+			
+			<birthday>1336082400</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>1</points>
+
+		</result>
+		<result>
+
+			<position>16.</position>
+
+			<competitor_id>5011</competitor_id>
+
+			<firstname><![CDATA[Nikita]]></firstname>
+
+			<lastname><![CDATA[Kravčenko]]></lastname>
+			
+			<birthday>1341871200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>1</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;dorostenky</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>11</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5005</competitor_id>
+
+			<firstname><![CDATA[Karolína]]></firstname>
+
+			<lastname><![CDATA[Trávníčková]]></lastname>
+			
+			<birthday>1310940000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5002</competitor_id>
+
+			<firstname><![CDATA[Sofie]]></firstname>
+
+			<lastname><![CDATA[Horňáková]]></lastname>
+			
+			<birthday>1354230000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5032</competitor_id>
+
+			<firstname><![CDATA[Jana]]></firstname>
+
+			<lastname><![CDATA[Škaldová]]></lastname>
+			
+			<birthday>1305410400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5004</competitor_id>
+
+			<firstname><![CDATA[Myroslava]]></firstname>
+
+			<lastname><![CDATA[Savko]]></lastname>
+			
+			<birthday>1354489200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5015</competitor_id>
+
+			<firstname><![CDATA[Marie]]></firstname>
+
+			<lastname><![CDATA[Dalíková]]></lastname>
+			
+			<birthday>1331420400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4971</competitor_id>
+
+			<firstname><![CDATA[Lucie-Morgana]]></firstname>
+
+			<lastname><![CDATA[Futschik]]></lastname>
+			
+			<birthday>1340056800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5031</competitor_id>
+
+			<firstname><![CDATA[Viktorie]]></firstname>
+
+			<lastname><![CDATA[Zbranková]]></lastname>
+			
+			<birthday>1313186400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>5017</competitor_id>
+
+			<firstname><![CDATA[Nela]]></firstname>
+
+			<lastname><![CDATA[Skořepová]]></lastname>
+			
+			<birthday>1300489200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>9.</position>
+
+			<competitor_id>4970</competitor_id>
+
+			<firstname><![CDATA[Aneta]]></firstname>
+
+			<lastname><![CDATA[Sapíková]]></lastname>
+			
+			<birthday>1346277600</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>3</points>
+
+		</result>
+		<result>
+
+			<position>9.</position>
+
+			<competitor_id>5003</competitor_id>
+
+			<firstname><![CDATA[Andrea]]></firstname>
+
+			<lastname><![CDATA[Michalcová]]></lastname>
+			
+			<birthday>1323558000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>3</points>
+
+		</result>
+		<result>
+
+			<position>11.</position>
+
+			<competitor_id>5016</competitor_id>
+
+			<firstname><![CDATA[Natálie]]></firstname>
+
+			<lastname><![CDATA[Prokešová]]></lastname>
+			
+			<birthday>1318802400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>2</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;junioři</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[junioři]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5033</competitor_id>
+
+			<firstname><![CDATA[Maximus-Yorke]]></firstname>
+
+			<lastname><![CDATA[Brown]]></lastname>
+			
+			<birthday>1284674400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5021</competitor_id>
+
+			<firstname><![CDATA[Daniel]]></firstname>
+
+			<lastname><![CDATA[Tůma]]></lastname>
+			
+			<birthday>1278540000</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5006</competitor_id>
+
+			<firstname><![CDATA[Štěpán]]></firstname>
+
+			<lastname><![CDATA[Stupka]]></lastname>
+			
+			<birthday>1276466400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;juniorky</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[juniorky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5034</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Vágnerová]]></lastname>
+			
+			<birthday>1287093600</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;ženy U21</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[ženy U21]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5036</competitor_id>
+
+			<firstname><![CDATA[Anežka]]></firstname>
+
+			<lastname><![CDATA[Mládková]]></lastname>
+			
+			<birthday>1182895200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5035</competitor_id>
+
+			<firstname><![CDATA[Klára]]></firstname>
+
+			<lastname><![CDATA[Fialová]]></lastname>
+			
+			<birthday>1193522400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;muži</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[muži]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5040</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Bošek]]></lastname>
+			
+			<birthday>666918000</birthday>
+
+			<club><![CDATA[SHOBU Academy]]></club>
+
+			<club_id>2152</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5039</competitor_id>
+
+			<firstname><![CDATA[Ladislav]]></firstname>
+
+			<lastname><![CDATA[Mareš]]></lastname>
+			
+			<birthday>-109558800</birthday>
+
+			<club><![CDATA[TJ Auto Škoda Mladá Boleslav]]></club>
+
+			<club_id>2151</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5037</competitor_id>
+
+			<firstname><![CDATA[Josef]]></firstname>
+
+			<lastname><![CDATA[Mišák]]></lastname>
+			
+			<birthday>273798000</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;ženy</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[ženy]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5036</competitor_id>
+
+			<firstname><![CDATA[Anežka]]></firstname>
+
+			<lastname><![CDATA[Mládková]]></lastname>
+			
+			<birthday>1182895200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5035</competitor_id>
+
+			<firstname><![CDATA[Klára]]></firstname>
+
+			<lastname><![CDATA[Fialová]]></lastname>
+			
+			<birthday>1193522400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5034</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Vágnerová]]></lastname>
+			
+			<birthday>1287093600</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;masters muži U50</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[masters muži U50]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;masters ženy U45</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[masters ženy U45]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;masters muži 60+</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[masters muži 60+]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kata;chlapci U8</name> 
+		
+		<disciplina><![CDATA[kata]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U8]]></kategorie1> 
+		
+		<kategorie2><![CDATA[]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5007</competitor_id>
+
+			<firstname><![CDATA[Filip-William]]></firstname>
+
+			<lastname><![CDATA[Jelínek]]></lastname>
+			
+			<birthday>1529877600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U10;-27 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-27 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5007</competitor_id>
+
+			<firstname><![CDATA[Filip-William]]></firstname>
+
+			<lastname><![CDATA[Jelínek]]></lastname>
+			
+			<birthday>1529877600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4978</competitor_id>
+
+			<firstname><![CDATA[Matěj]]></firstname>
+
+			<lastname><![CDATA[Rybín]]></lastname>
+			
+			<birthday>1483311600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U10;-32 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-32 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4955</competitor_id>
+
+			<firstname><![CDATA[Benjamin]]></firstname>
+
+			<lastname><![CDATA[Minařík]]></lastname>
+			
+			<birthday>1521932400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4956</competitor_id>
+
+			<firstname><![CDATA[Matyáš]]></firstname>
+
+			<lastname><![CDATA[Raich]]></lastname>
+			
+			<birthday>1509404400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U10;-30 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-30 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4957</competitor_id>
+
+			<firstname><![CDATA[Julie]]></firstname>
+
+			<lastname><![CDATA[Dittrichová]]></lastname>
+			
+			<birthday>1509922800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5041</competitor_id>
+
+			<firstname><![CDATA[Štěpánka]]></firstname>
+
+			<lastname><![CDATA[Kubíková]]></lastname>
+			
+			<birthday>1506549600</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4959</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Reyneltová]]></lastname>
+			
+			<birthday>1496008800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U10;+30 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U10]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+30 kg]]></kategorie2> 
+
+		<total>5</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4972</competitor_id>
+
+			<firstname><![CDATA[Rozálie]]></firstname>
+
+			<lastname><![CDATA[Krejčířová]]></lastname>
+			
+			<birthday>1518908400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4979</competitor_id>
+
+			<firstname><![CDATA[Anika]]></firstname>
+
+			<lastname><![CDATA[Němcová]]></lastname>
+			
+			<birthday>1516230000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4980</competitor_id>
+
+			<firstname><![CDATA[Nela]]></firstname>
+
+			<lastname><![CDATA[Skorčíková]]></lastname>
+			
+			<birthday>1546297200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4958</competitor_id>
+
+			<firstname><![CDATA[Marie]]></firstname>
+
+			<lastname><![CDATA[Hertíková]]></lastname>
+			
+			<birthday>1498600800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5042</competitor_id>
+
+			<firstname><![CDATA[Sofie]]></firstname>
+
+			<lastname><![CDATA[Müllerová]]></lastname>
+			
+			<birthday>1531087200</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>6</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U12;-30 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-30 kg]]></kategorie2> 
+
+		<total>5</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4983</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Hála]]></lastname>
+			
+			<birthday>1445986800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4965</competitor_id>
+
+			<firstname><![CDATA[Richard]]></firstname>
+
+			<lastname><![CDATA[Chmelař]]></lastname>
+			
+			<birthday>1447801200</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4981</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Lutsiuk]]></lastname>
+			
+			<birthday>1474322400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4962</competitor_id>
+
+			<firstname><![CDATA[David]]></firstname>
+
+			<lastname><![CDATA[Jarolím]]></lastname>
+			
+			<birthday>1466114400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5043</competitor_id>
+
+			<firstname><![CDATA[Václav]]></firstname>
+
+			<lastname><![CDATA[Bien]]></lastname>
+			
+			<birthday>1439848800</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>6</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U12;-35 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-35 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5044</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Koutný]]></lastname>
+			
+			<birthday>1477778400</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5045</competitor_id>
+
+			<firstname><![CDATA[Vojtěch]]></firstname>
+
+			<lastname><![CDATA[Makovička]]></lastname>
+			
+			<birthday>1463781600</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U12;-40 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-40 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4982</competitor_id>
+
+			<firstname><![CDATA[Petr]]></firstname>
+
+			<lastname><![CDATA[Skorčík]]></lastname>
+			
+			<birthday>1477432800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4961</competitor_id>
+
+			<firstname><![CDATA[Michal]]></firstname>
+
+			<lastname><![CDATA[Janáček]]></lastname>
+			
+			<birthday>1452812400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U12;-45 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-45 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5046</competitor_id>
+
+			<firstname><![CDATA[Patrik]]></firstname>
+
+			<lastname><![CDATA[Karnet]]></lastname>
+			
+			<birthday>1430776800</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U12;+45 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+45 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4973</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Krejčíř]]></lastname>
+			
+			<birthday>1470607200</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U12;-30 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-30 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4986</competitor_id>
+
+			<firstname><![CDATA[Linda]]></firstname>
+
+			<lastname><![CDATA[Trávníčková]]></lastname>
+			
+			<birthday>1450220400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4984</competitor_id>
+
+			<firstname><![CDATA[Natálie]]></firstname>
+
+			<lastname><![CDATA[Jágrová]]></lastname>
+			
+			<birthday>1445900400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4964</competitor_id>
+
+			<firstname><![CDATA[Monika]]></firstname>
+
+			<lastname><![CDATA[Kadlecová]]></lastname>
+			
+			<birthday>1473890400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U12;-35 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-35 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4966</competitor_id>
+
+			<firstname><![CDATA[Šárka]]></firstname>
+
+			<lastname><![CDATA[Kurfiřtová]]></lastname>
+			
+			<birthday>1422140400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5047</competitor_id>
+
+			<firstname><![CDATA[Soňa]]></firstname>
+
+			<lastname><![CDATA[Javůrková]]></lastname>
+			
+			<birthday>1478386800</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U12;+40 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U12]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+40 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5048</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Klabanová]]></lastname>
+			
+			<birthday>1453762800</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4985</competitor_id>
+
+			<firstname><![CDATA[Emílie]]></firstname>
+
+			<lastname><![CDATA[Součková]]></lastname>
+			
+			<birthday>1421622000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U14;-40 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-40 kg]]></kategorie2> 
+
+		<total>8</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4997</competitor_id>
+
+			<firstname><![CDATA[František]]></firstname>
+
+			<lastname><![CDATA[Němec]]></lastname>
+			
+			<birthday>1376344800</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5019</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Pospíšil]]></lastname>
+			
+			<birthday>1395010800</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4995</competitor_id>
+
+			<firstname><![CDATA[Vendelín]]></firstname>
+
+			<lastname><![CDATA[Pavlík]]></lastname>
+			
+			<birthday>1385766000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4996</competitor_id>
+
+			<firstname><![CDATA[Mikuláš]]></firstname>
+
+			<lastname><![CDATA[Trávníček]]></lastname>
+			
+			<birthday>1380405600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4988</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Zuzánek]]></lastname>
+			
+			<birthday>1392678000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>4987</competitor_id>
+
+			<firstname><![CDATA[Kryštof]]></firstname>
+
+			<lastname><![CDATA[Kováč]]></lastname>
+			
+			<birthday>1393887600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>6</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>4992</competitor_id>
+
+			<firstname><![CDATA[Vilém]]></firstname>
+
+			<lastname><![CDATA[Antonický]]></lastname>
+			
+			<birthday>1366322400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>4</points>
+
+		</result>
+		<result>
+
+			<position>7.</position>
+
+			<competitor_id>4994</competitor_id>
+
+			<firstname><![CDATA[Kryštof-Cheyenne]]></firstname>
+
+			<lastname><![CDATA[Michel]]></lastname>
+			
+			<birthday>1376604000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>4</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U14;-45 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-45 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5049</competitor_id>
+
+			<firstname><![CDATA[Adam]]></firstname>
+
+			<lastname><![CDATA[Müller]]></lastname>
+			
+			<birthday>1394406000</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5024</competitor_id>
+
+			<firstname><![CDATA[Mikuláš]]></firstname>
+
+			<lastname><![CDATA[Zbranek]]></lastname>
+			
+			<birthday>1370988000</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4968</competitor_id>
+
+			<firstname><![CDATA[Bartoloměj]]></firstname>
+
+			<lastname><![CDATA[Žďánský]]></lastname>
+			
+			<birthday>1393714800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U14;-50 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-50 kg]]></kategorie2> 
+
+		<total>4</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4969</competitor_id>
+
+			<firstname><![CDATA[Vladislav]]></firstname>
+
+			<lastname><![CDATA[Pinzari]]></lastname>
+			
+			<birthday>1369864800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4974</competitor_id>
+
+			<firstname><![CDATA[Jaroslav]]></firstname>
+
+			<lastname><![CDATA[Havlíček]]></lastname>
+			
+			<birthday>1406498400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4989</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Michalec]]></lastname>
+			
+			<birthday>1390777200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5009</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Šolc]]></lastname>
+			
+			<birthday>1395788400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U14;-55 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-55 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5050</competitor_id>
+
+			<firstname><![CDATA[Tadeáš]]></firstname>
+
+			<lastname><![CDATA[Cipra]]></lastname>
+			
+			<birthday>1372543200</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4993</competitor_id>
+
+			<firstname><![CDATA[Filip]]></firstname>
+
+			<lastname><![CDATA[Janovics]]></lastname>
+			
+			<birthday>1359673200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;chlapci U14;+55 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[chlapci U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+55 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4975</competitor_id>
+
+			<firstname><![CDATA[Adam]]></firstname>
+
+			<lastname><![CDATA[Křenek]]></lastname>
+			
+			<birthday>1364511600</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U14;-42 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-42 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4999</competitor_id>
+
+			<firstname><![CDATA[Viktoria]]></firstname>
+
+			<lastname><![CDATA[Vojtenko]]></lastname>
+			
+			<birthday>1376258400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>4990</competitor_id>
+
+			<firstname><![CDATA[Eliška]]></firstname>
+
+			<lastname><![CDATA[Kalinová]]></lastname>
+			
+			<birthday>1414710000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5025</competitor_id>
+
+			<firstname><![CDATA[Matylda]]></firstname>
+
+			<lastname><![CDATA[Brown]]></lastname>
+			
+			<birthday>1379887200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U14;-47 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-47 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4991</competitor_id>
+
+			<firstname><![CDATA[Kateřina]]></firstname>
+
+			<lastname><![CDATA[Stehlíková]]></lastname>
+			
+			<birthday>1397253600</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dívky U14;+52kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dívky U14]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+52kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>4998</competitor_id>
+
+			<firstname><![CDATA[Soňa-Pavlína]]></firstname>
+
+			<lastname><![CDATA[Pfeifrová]]></lastname>
+			
+			<birthday>1372111200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5051</competitor_id>
+
+			<firstname><![CDATA[Kristýna]]></firstname>
+
+			<lastname><![CDATA[Klabanová]]></lastname>
+			
+			<birthday>1370210400</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenci;-52 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-52 kg]]></kategorie2> 
+
+		<total>5</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5000</competitor_id>
+
+			<firstname><![CDATA[Filip-Akira]]></firstname>
+
+			<lastname><![CDATA[Sokol]]></lastname>
+			
+			<birthday>1311890400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5029</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Filipský]]></lastname>
+			
+			<birthday>1299452400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5018</competitor_id>
+
+			<firstname><![CDATA[Robin]]></firstname>
+
+			<lastname><![CDATA[Cenger]]></lastname>
+			
+			<birthday>1356562800</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5027</competitor_id>
+
+			<firstname><![CDATA[Jakub]]></firstname>
+
+			<lastname><![CDATA[Snížek]]></lastname>
+			
+			<birthday>1304114400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+		<result>
+
+			<position>5.</position>
+
+			<competitor_id>5013</competitor_id>
+
+			<firstname><![CDATA[Jan]]></firstname>
+
+			<lastname><![CDATA[Matoušek]]></lastname>
+			
+			<birthday>1354316400</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>6</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenci;-57 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-57 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5001</competitor_id>
+
+			<firstname><![CDATA[Robin]]></firstname>
+
+			<lastname><![CDATA[Hlaváček]]></lastname>
+			
+			<birthday>1316815200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenci;-63 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-63 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5030</competitor_id>
+
+			<firstname><![CDATA[Michal]]></firstname>
+
+			<lastname><![CDATA[Kopanica]]></lastname>
+			
+			<birthday>1308866400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5028</competitor_id>
+
+			<firstname><![CDATA[Adam-Marian]]></firstname>
+
+			<lastname><![CDATA[Bartoň-Dobenín]]></lastname>
+			
+			<birthday>1316642400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4976</competitor_id>
+
+			<firstname><![CDATA[Martin]]></firstname>
+
+			<lastname><![CDATA[Křivohlávek]]></lastname>
+			
+			<birthday>1294268400</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenci;-70 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-70 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5011</competitor_id>
+
+			<firstname><![CDATA[Nikita]]></firstname>
+
+			<lastname><![CDATA[Kravčenko]]></lastname>
+			
+			<birthday>1341871200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenci;+70 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenci]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+70 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5026</competitor_id>
+
+			<firstname><![CDATA[Nicolas-Orest]]></firstname>
+
+			<lastname><![CDATA[Seneta]]></lastname>
+			
+			<birthday>1301349600</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5020</competitor_id>
+
+			<firstname><![CDATA[Václav]]></firstname>
+
+			<lastname><![CDATA[Kupka]]></lastname>
+			
+			<birthday>1336082400</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5012</competitor_id>
+
+			<firstname><![CDATA[Lukáš]]></firstname>
+
+			<lastname><![CDATA[Lebeda]]></lastname>
+			
+			<birthday>1315087200</birthday>
+
+			<club><![CDATA[Shotokan Sport Centrum Česká Lípa]]></club>
+
+			<club_id>2148</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenky;-47 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-47 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5002</competitor_id>
+
+			<firstname><![CDATA[Sofie]]></firstname>
+
+			<lastname><![CDATA[Horňáková]]></lastname>
+			
+			<birthday>1354230000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5031</competitor_id>
+
+			<firstname><![CDATA[Viktorie]]></firstname>
+
+			<lastname><![CDATA[Zbranková]]></lastname>
+			
+			<birthday>1313186400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenky;-54 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-54 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5004</competitor_id>
+
+			<firstname><![CDATA[Myroslava]]></firstname>
+
+			<lastname><![CDATA[Savko]]></lastname>
+			
+			<birthday>1354489200</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5005</competitor_id>
+
+			<firstname><![CDATA[Karolína]]></firstname>
+
+			<lastname><![CDATA[Trávníčková]]></lastname>
+			
+			<birthday>1310940000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5032</competitor_id>
+
+			<firstname><![CDATA[Jana]]></firstname>
+
+			<lastname><![CDATA[Škaldová]]></lastname>
+			
+			<birthday>1305410400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenky;-61 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-61 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5053</competitor_id>
+
+			<firstname><![CDATA[Valeria]]></firstname>
+
+			<lastname><![CDATA[Nikonorova]]></lastname>
+			
+			<birthday>1312581600</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5052</competitor_id>
+
+			<firstname><![CDATA[Šárka]]></firstname>
+
+			<lastname><![CDATA[Bulířová]]></lastname>
+			
+			<birthday>1321830000</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;dorostenky;+61 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[dorostenky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+61 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5054</competitor_id>
+
+			<firstname><![CDATA[Zuzana]]></firstname>
+
+			<lastname><![CDATA[Bulířová]]></lastname>
+			
+			<birthday>1321830000</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5003</competitor_id>
+
+			<firstname><![CDATA[Andrea]]></firstname>
+
+			<lastname><![CDATA[Michalcová]]></lastname>
+			
+			<birthday>1323558000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4970</competitor_id>
+
+			<firstname><![CDATA[Aneta]]></firstname>
+
+			<lastname><![CDATA[Sapíková]]></lastname>
+			
+			<birthday>1346277600</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;junioři;-61 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[junioři]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-61 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5008</competitor_id>
+
+			<firstname><![CDATA[Štěpán]]></firstname>
+
+			<lastname><![CDATA[Stehlík]]></lastname>
+			
+			<birthday>1285452000</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5033</competitor_id>
+
+			<firstname><![CDATA[Maximus-Yorke]]></firstname>
+
+			<lastname><![CDATA[Brown]]></lastname>
+			
+			<birthday>1284674400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>5006</competitor_id>
+
+			<firstname><![CDATA[Štěpán]]></firstname>
+
+			<lastname><![CDATA[Stupka]]></lastname>
+			
+			<birthday>1276466400</birthday>
+
+			<club><![CDATA[SK Karate Shotokan Liberec]]></club>
+
+			<club_id>2147</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;junioři;-68 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[junioři]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-68 kg]]></kategorie2> 
+
+		<total>3</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5055</competitor_id>
+
+			<firstname><![CDATA[Vít]]></firstname>
+
+			<lastname><![CDATA[Mečíř]]></lastname>
+			
+			<birthday>1291071600</birthday>
+
+			<club><![CDATA[TJ Bižuterie, o.s., oddíl KABU Jablonec]]></club>
+
+			<club_id>2153</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5022</competitor_id>
+
+			<firstname><![CDATA[Matěj]]></firstname>
+
+			<lastname><![CDATA[Čermák]]></lastname>
+			
+			<birthday>1287612000</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>24</points>
+
+		</result>
+		<result>
+
+			<position>3.</position>
+
+			<competitor_id>4977</competitor_id>
+
+			<firstname><![CDATA[Filip]]></firstname>
+
+			<lastname><![CDATA[Šrotýř]]></lastname>
+			
+			<birthday>1272232800</birthday>
+
+			<club><![CDATA[GRYF z.s.]]></club>
+
+			<club_id>2146</club_id>
+
+			<points>12</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;junioři;+76 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[junioři]]></kategorie1> 
+		
+		<kategorie2><![CDATA[+76 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5021</competitor_id>
+
+			<firstname><![CDATA[Daniel]]></firstname>
+
+			<lastname><![CDATA[Tůma]]></lastname>
+			
+			<birthday>1278540000</birthday>
+
+			<club><![CDATA[Shotokan karate dó TJ Sadská]]></club>
+
+			<club_id>2149</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;juniorky;-59 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[juniorky]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-59 kg]]></kategorie2> 
+
+		<total>1</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5034</competitor_id>
+
+			<firstname><![CDATA[Anna]]></firstname>
+
+			<lastname><![CDATA[Vágnerová]]></lastname>
+			
+			<birthday>1287093600</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;ženy U21;-61 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[ženy U21]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-61 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5036</competitor_id>
+
+			<firstname><![CDATA[Anežka]]></firstname>
+
+			<lastname><![CDATA[Mládková]]></lastname>
+			
+			<birthday>1182895200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5035</competitor_id>
+
+			<firstname><![CDATA[Klára]]></firstname>
+
+			<lastname><![CDATA[Fialová]]></lastname>
+			
+			<birthday>1193522400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;muži;-67 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[muži]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-67 kg]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;ženy;-55 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[ženy]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-55 kg]]></kategorie2> 
+
+		<total>2</total>
+
+		<result>
+
+			<position>1.</position>
+
+			<competitor_id>5036</competitor_id>
+
+			<firstname><![CDATA[Anežka]]></firstname>
+
+			<lastname><![CDATA[Mládková]]></lastname>
+			
+			<birthday>1182895200</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>36</points>
+
+		</result>
+		<result>
+
+			<position>2.</position>
+
+			<competitor_id>5035</competitor_id>
+
+			<firstname><![CDATA[Klára]]></firstname>
+
+			<lastname><![CDATA[Fialová]]></lastname>
+			
+			<birthday>1193522400</birthday>
+
+			<club><![CDATA[Karate Do Dvůr Králové nad Labem, z.s.]]></club>
+
+			<club_id>2150</club_id>
+
+			<points>24</points>
+
+		</result>
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;ženy;-68 kg</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[ženy]]></kategorie1> 
+		
+		<kategorie2><![CDATA[-68 kg]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+	<category>
+
+		<type>individual</type>
+
+		<name>kumite;Masters ženy;BRH</name> 
+		
+		<disciplina><![CDATA[kumite]]></disciplina> 
+		
+		<kategorie1><![CDATA[Masters ženy]]></kategorie1> 
+		
+		<kategorie2><![CDATA[BRH]]></kategorie2> 
+
+		<total>0</total>
+
+
+
+	</category>
+</tournament>
