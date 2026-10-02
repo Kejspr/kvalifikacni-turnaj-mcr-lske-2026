@@ -43,7 +43,7 @@ FINAL_EXPORT_TITLE = "Konecny seznam postupujicich - Kvalifikacni turnaj MCR Beg
 PRESENTATION_HTML = BASE_DIR / "docs" / "index.html"
 
 # Nadpis HTML / aggregated-results.xml
-TOURNAMENT_TITLE = "Vysledky kvalifikacniho turnaje MCR LSKe 2026"
+TOURNAMENT_TITLE = "Výsledky kvalifikačního turnaje MČR LSKe 2026"
 
 # ---------------------------------------------------------------------------
 # Nominace klubu (.txt soubory)
