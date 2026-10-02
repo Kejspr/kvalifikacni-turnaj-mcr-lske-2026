@@ -1,0 +1,32 @@
+# Nominace – postup na kvalifikační turnaj MČR LSKe 2026
+# Klub: (doplňte název klubu)
+#
+# Vyplňte seznamy níže a pošlete zpět e-mailem.
+# Jeden řádek = jeden závodník v jedné kategorii.
+# Formát: Jméno Příjmení - KATEGORIE
+#
+# Tip: na webu u řádku klikněte na Txt – zkopíruje se správný formát.
+# Web: https://kejspr.github.io/kvalifikacni-turnaj-mcr-lske-2026/
+#
+# Poznámka: zatím jsou započítaná 2 krajská kola; po 3. kole lze doladit.
+#
+# =====================================================================
+# A) POTVRZENÍ / ZÁJEM
+#    Závodníci, kteří jedou (nebo mají zájem o postup).
+# =====================================================================
+
+# příklad (smažte a nahraďte svými):
+# Adam Novak - KATA chlapci U10
+# Eva Malá - KUMITE dívky U12 -35 kg
+
+
+# =====================================================================
+# B) UVOLNĚNÍ SLOTU
+#    Hlavně závodníci na postupové pozici, kteří nepojedou
+#    (uvolní místo dalšímu v pořadí) – např. mají jinou kategorii,
+#    nebo již mají postup z národních soutěží.
+# =====================================================================
+
+# příklad (smažte a nahraďte svými):
+# Marek Horák - KUMITE chlapci U14 -50 kg
+
