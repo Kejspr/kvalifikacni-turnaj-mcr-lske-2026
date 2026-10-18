@@ -430,13 +430,13 @@ FILTER_SCRIPT = """
 
     const parts = [visibleCategories + " kategorií", visibleRows + " řádků"];
     if (visibleEmpty) parts.push(visibleEmpty + " prázdných");
-    if (visibleUnofficial) parts.push(visibleUnofficial + " mimo předpis");
+    if (visibleUnofficial) parts.push(visibleUnofficial + " mimo offic. kategorie");
     if (club) parts.push(highlightedRows + " z vybraného klubu");
     if (onlyClub) parts.push("jen vybraný klub");
     if (onlyPostup) parts.push("jen postupy");
     if (onlyRemiza) parts.push("jen remízy");
-    if (!showUnofficial && officialMode !== "unofficial") parts.push("bez mimo předpis");
-    if (officialMode === "unofficial") parts.push("jen mimo předpis");
+    if (!showUnofficial && officialMode !== "unofficial") parts.push("bez mimo offic. kategorie");
+    if (officialMode === "unofficial") parts.push("jen mimo offic. kategorie");
     if (officialMode === "official") parts.push("jen oficiální");
     parts.push("Postupuje: " + postupuje);
     parts.push("Remízy: " + remiza);
@@ -577,7 +577,7 @@ def build_legend_html(qualifying_places: int, disciplines: List[str]) -> str:
             "Nepostupuje (mimo postup z pořadí a bez volného slotu).",
         ),
         (
-            "Kategorie mimo předpis ČSKe",
+            "mimo offic. kategorie",
             "Oranžové zvýraznění — kategorie je ve výsledcích, "
             "ale není v oficiálním seznamu ČSKe (např. KATA U8).",
         ),
@@ -610,7 +610,7 @@ def build_legend_html(qualifying_places: int, disciplines: List[str]) -> str:
         f"<div class=\"legend-swatches\">{disc_swatches}</div>"
         f"<p class=\"legend-subtitle\">Označení kategorií</p>"
         f"<div class=\"legend-swatches\">"
-        f"<span class=\"swatch swatch-unofficial\">mimo předpis ČSKe</span>"
+        f"<span class=\"swatch swatch-unofficial\">mimo offic. kategorie</span>"
         f"<span class=\"swatch swatch-empty\">prázdná oficiální</span>"
         f"</div>"
         f"<p class=\"legend-subtitle\">Postupy</p>"
@@ -904,7 +904,7 @@ def generate_html(
     }}
     .category-unofficial h3 {{ color: #e65100; }}
     .category-unofficial h3::after {{
-      content: " (mimo predpis CSKe)"; font-size: 12px; font-weight: 600; color: #ef6c00; margin-left: 6px;
+      content: " (mimo offic. kategorie)"; font-size: 12px; font-weight: 600; color: #ef6c00; margin-left: 6px;
     }}
     .category-empty {{
       background: #fafafa; border: 1px dashed #bdbdbd; padding: 10px 14px; border-radius: 8px; opacity: 0.9;
@@ -1016,7 +1016,7 @@ def generate_html(
         </label>
         <label>
           <input type="checkbox" id="filter-show-unofficial" checked>
-          <span>Zobrazit mimo předpis ČSKe</span>
+          <span>Zobrazit mimo offic. kategorie</span>
         </label>
         <label>
           <input type="checkbox" id="filter-show-empty" checked>
