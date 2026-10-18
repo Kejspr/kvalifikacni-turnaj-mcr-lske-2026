@@ -117,3 +117,13 @@ ALLOWED_CLUBS = frozenset({
     "Tělovýchovná jednota Bižuterie, z.s.",
     "SHOBU Academy",
 })
+
+# ---------------------------------------------------------------------------
+# Neplatne / placeholder kategorie z rozbiteho exportu karate-draw
+# (doslovne retezce "disciplina", "kategorie1", "kategorie2")
+# ---------------------------------------------------------------------------
+INVALID_CATEGORY_PLACEHOLDERS = frozenset({
+    "disciplina",
+    "kategorie1",
+    "kategorie2",
+})

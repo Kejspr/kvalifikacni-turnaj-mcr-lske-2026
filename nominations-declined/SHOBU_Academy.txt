@@ -14,3 +14,4 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Jakub Bošek - KATA muži 

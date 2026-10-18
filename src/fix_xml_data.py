@@ -24,7 +24,13 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 
-from config import CLUB_NAME_MAP, FIX_LOG_PREFIX, ORIGINAL_DIR, WORKING_DIR
+from config import (
+    CLUB_NAME_MAP,
+    FIX_LOG_PREFIX,
+    INVALID_CATEGORY_PLACEHOLDERS,
+    ORIGINAL_DIR,
+    WORKING_DIR,
+)
 from utils import (
     assign_working_files,
     is_allowed_club,
@@ -33,6 +39,16 @@ from utils import (
     normalizuj,
     normalize_club,
 )
+
+
+def is_placeholder_category(disciplina: str, kategorie1: str, kategorie2: str = "") -> bool:
+    """True u rozbiteho exportu (disciplina/kategorie1 = literaly sablony)."""
+    values = {disciplina.strip().lower(), kategorie1.strip().lower()}
+    if kategorie2.strip():
+        values.add(kategorie2.strip().lower())
+    if not disciplina.strip() or not kategorie1.strip():
+        return True
+    return bool(values & {item.lower() for item in INVALID_CATEGORY_PLACEHOLDERS})
 
 
 def xml_text(element, tag: str) -> str:
@@ -132,7 +148,23 @@ def apply_fixes(
         stats["names"] += 1
         modified = True
 
-    for category in root.findall("category"):
+    for category in list(root.findall("category")):
+        disciplina = xml_text(category, "disciplina")
+        kategorie1 = xml_text(category, "kategorie1")
+        kategorie2 = xml_text(category, "kategorie2")
+        if is_placeholder_category(disciplina, kategorie1, kategorie2):
+            n_results = len(category.findall("result"))
+            message = (
+                f"  neplatna kategorie (placeholder): odstraneno "
+                f"'{disciplina};{kategorie1};{kategorie2}' ({n_results} vysledku)"
+            )
+            changes.append(message)
+            root.remove(category)
+            stats["empty_categories"] += 1
+            stats["excluded"] += n_results
+            modified = True
+            continue
+
         weight_elem = category.find("kategorie2")
         if weight_elem is not None and weight_elem.text:
             fixed = fix_weight_format(weight_elem.text.strip())

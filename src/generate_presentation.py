@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from aggregate_results import category_sort_key
+from category_cske import KATA_INDIVIDUAL, KUMITE_INDIVIDUAL, KUMITE_WEIGHTS
 from config import (
     AGGREGATED_XML,
     EXCEL_CSV,
@@ -123,6 +124,66 @@ def discipline_from_category(category_name: str) -> str:
     return category_name.split()[0] if category_name else ""
 
 
+# Barvy disciplín (border + nadpis + legenda). Bez fialove AI palety.
+DISCIPLINE_COLORS: Dict[str, dict[str, str]] = {
+    "KATA": {"accent": "#1565c0", "bg": "#e3f2fd", "label": "KATA"},
+    "KUMITE": {"accent": "#c62828", "bg": "#ffebee", "label": "KUMITE"},
+    "KATA BEGINNER": {"accent": "#0277bd", "bg": "#e1f5fe", "label": "KATA BEGINNER"},
+    "KUMITE BEGINNER": {"accent": "#ad1457", "bg": "#fce4ec", "label": "KUMITE BEGINNER"},
+    "KARATE AGILITY": {"accent": "#ef6c00", "bg": "#fff3e0", "label": "KARATE AGILITY"},
+    "KIHON IDO": {"accent": "#558b2f", "bg": "#f1f8e9", "label": "KIHON IDO"},
+    "KUMITE BALLOON": {"accent": "#00838f", "bg": "#e0f7fa", "label": "KUMITE BALLOON"},
+}
+
+
+def discipline_color(disciplina: str) -> dict[str, str]:
+    """Vrati barvy discipliny; fallback pro nezname."""
+    if disciplina in DISCIPLINE_COLORS:
+        return DISCIPLINE_COLORS[disciplina]
+    return {"accent": "#546e7a", "bg": "#eceff1", "label": disciplina}
+
+
+def discipline_css_slug(disciplina: str) -> str:
+    return normalizuj(disciplina).replace(" ", "-")
+
+
+def _weights_for_kumite_age(age_label: str) -> Optional[tuple[str, ...]]:
+    """Najde hmotnostni kategorie pro vekovy label z predpisu CSKe."""
+    age_n = normalizuj(age_label)
+    for weight_cat in KUMITE_WEIGHTS:
+        parts = [part.strip() for part in weight_cat.age_label.split("/")]
+        full_parts = [normalizuj(parts[0])]
+        prefix = parts[0].rsplit(" ", 1)[0] if " " in parts[0] else parts[0]
+        for part in parts[1:]:
+            part = part.strip()
+            if " " in part or normalizuj(part).startswith(normalizuj(prefix)):
+                full_parts.append(normalizuj(part))
+            else:
+                full_parts.append(normalizuj(f"{prefix} {part}"))
+        if age_n in full_parts:
+            return weight_cat.weights
+    return None
+
+
+def build_official_display_categories() -> List[Tuple[str, str]]:
+    """Oficialni kategorie CSKe jako (disciplina, display_name) pro HTML."""
+    result: List[Tuple[str, str]] = []
+    for cat in KATA_INDIVIDUAL:
+        result.append(("KATA", format_category_name("kata", cat.label, "")))
+    for cat in KUMITE_INDIVIDUAL:
+        weights = _weights_for_kumite_age(cat.label)
+        if not weights:
+            result.append(("KUMITE", format_category_name("kumite", cat.label, "")))
+            continue
+        for weight in weights:
+            result.append(("KUMITE", format_category_name("kumite", cat.label, weight)))
+    return result
+
+
+def official_category_keys(official: List[Tuple[str, str]]) -> set[str]:
+    return {normalizuj(name) for _disc, name in official}
+
+
 def rounds_from_csv_row(row: dict, round_columns: List[str]) -> str:
     parts = []
     for column in round_columns:
@@ -216,6 +277,8 @@ FILTER_SCRIPT = """
   const onlyClubCheckbox = document.getElementById("filter-only-club");
   const onlyPostupCheckbox = document.getElementById("filter-only-postup");
   const onlyRemizaCheckbox = document.getElementById("filter-only-remiza");
+  const showUnofficialCheckbox = document.getElementById("filter-show-unofficial");
+  const showEmptyCheckbox = document.getElementById("filter-show-empty");
   const statusEl = document.getElementById("filter-status");
 
   function saveFilters() {
@@ -226,6 +289,8 @@ FILTER_SCRIPT = """
       onlyClub: onlyClubCheckbox.checked,
       onlyPostup: onlyPostupCheckbox.checked,
       onlyRemiza: onlyRemizaCheckbox.checked,
+      showUnofficial: showUnofficialCheckbox.checked,
+      showEmpty: showEmptyCheckbox.checked,
     }));
   }
 
@@ -294,15 +359,28 @@ FILTER_SCRIPT = """
     const onlyClub = onlyClubCheckbox.checked && club;
     const onlyPostup = onlyPostupCheckbox.checked;
     const onlyRemiza = onlyRemizaCheckbox.checked;
+    const showEmpty = showEmptyCheckbox.checked;
+    const showUnofficial = showUnofficialCheckbox.checked;
     let visibleCategories = 0;
     let visibleRows = 0;
     let highlightedRows = 0;
+    let visibleEmpty = 0;
+    let visibleUnofficial = 0;
 
     document.querySelectorAll(".category").forEach((section) => {
+      const isEmpty = section.dataset.empty === "1";
+      const isOfficial = section.dataset.official === "1";
       const matchMain = !main || section.dataset.discipline === main;
       const matchDetail = !detail || section.dataset.category === detail;
-      const matchClub = categoryHasClub(section, club);
+      const matchClub = isEmpty ? !club : categoryHasClub(section, club);
       let categoryVisible = matchMain && matchDetail && matchClub;
+      // Checkbox: zobrazit / skryt mimo predpis (Open, U8, ...)
+      if (!isOfficial && !showUnofficial) {
+        categoryVisible = false;
+      }
+      if (isEmpty && (!showEmpty || onlyPostup || onlyRemiza || onlyClub)) {
+        categoryVisible = false;
+      }
       let categoryRows = 0;
 
       section.querySelectorAll("tbody tr").forEach((row) => {
@@ -319,10 +397,14 @@ FILTER_SCRIPT = """
         }
       });
 
-      if (categoryVisible && categoryRows === 0) categoryVisible = false;
+      if (categoryVisible && categoryRows === 0 && !isEmpty) categoryVisible = false;
       section.hidden = !categoryVisible;
 
-      if (categoryVisible) visibleCategories += 1;
+      if (categoryVisible) {
+        visibleCategories += 1;
+        if (isEmpty) visibleEmpty += 1;
+        if (!isOfficial) visibleUnofficial += 1;
+      }
     });
 
     document.querySelectorAll(".discipline").forEach((section) => {
@@ -347,10 +429,15 @@ FILTER_SCRIPT = """
     });
 
     const parts = [visibleCategories + " kategorií", visibleRows + " řádků"];
+    if (visibleEmpty) parts.push(visibleEmpty + " prázdných");
+    if (visibleUnofficial) parts.push(visibleUnofficial + " mimo předpis");
     if (club) parts.push(highlightedRows + " z vybraného klubu");
     if (onlyClub) parts.push("jen vybraný klub");
     if (onlyPostup) parts.push("jen postupy");
     if (onlyRemiza) parts.push("jen remízy");
+    if (!showUnofficial && officialMode !== "unofficial") parts.push("bez mimo předpis");
+    if (officialMode === "unofficial") parts.push("jen mimo předpis");
+    if (officialMode === "official") parts.push("jen oficiální");
     parts.push("Postupuje: " + postupuje);
     parts.push("Remízy: " + remiza);
     parts.push("Čekatelé: " + cekatele);
@@ -368,6 +455,8 @@ FILTER_SCRIPT = """
     onlyClubCheckbox.checked = false;
     onlyPostupCheckbox.checked = false;
     onlyRemizaCheckbox.checked = false;
+    showUnofficialCheckbox.checked = true;
+    showEmptyCheckbox.checked = true;
     updateOnlyClubState();
     populateDetailOptions();
     applyFilters();
@@ -380,12 +469,35 @@ FILTER_SCRIPT = """
     clubSelect.appendChild(option);
   });
 
+  function applyDisciplineSelectColor() {
+    const value = mainSelect.value;
+    const colors = (filterData.disciplineColors || {})[value];
+    if (colors) {
+      mainSelect.style.color = colors.accent;
+      mainSelect.style.borderColor = colors.accent;
+      mainSelect.style.background = colors.bg;
+      mainSelect.style.fontWeight = "600";
+    } else {
+      mainSelect.style.color = "";
+      mainSelect.style.borderColor = "";
+      mainSelect.style.background = "";
+      mainSelect.style.fontWeight = "";
+    }
+  }
+
   filterData.disciplines.forEach((discipline) => {
     const option = document.createElement("option");
     option.value = discipline;
     option.textContent = discipline;
+    const colors = (filterData.disciplineColors || {})[discipline];
+    if (colors) {
+      option.style.color = colors.accent;
+      option.style.fontWeight = "600";
+      option.dataset.disciplineSlug = discipline.toLowerCase().replace(/\\s+/g, "-");
+    }
     mainSelect.appendChild(option);
   });
+  applyDisciplineSelectColor();
 
   const saved = loadFilters();
   if (saved.club && filterData.clubs.includes(saved.club)) clubSelect.value = saved.club;
@@ -397,6 +509,9 @@ FILTER_SCRIPT = """
   if (saved.onlyClub) onlyClubCheckbox.checked = true;
   if (saved.onlyPostup) onlyPostupCheckbox.checked = true;
   if (saved.onlyRemiza) onlyRemizaCheckbox.checked = true;
+  showUnofficialCheckbox.checked = saved.showUnofficial !== false;
+  showEmptyCheckbox.checked = saved.showEmpty !== false;
+  applyDisciplineSelectColor();
   updateOnlyClubState();
 
   clubSelect.addEventListener("change", () => {
@@ -406,12 +521,15 @@ FILTER_SCRIPT = """
   mainSelect.addEventListener("change", () => {
     detailSelect.value = "";
     populateDetailOptions();
+    applyDisciplineSelectColor();
     applyFilters();
   });
   detailSelect.addEventListener("change", applyFilters);
   onlyClubCheckbox.addEventListener("change", applyFilters);
   onlyPostupCheckbox.addEventListener("change", applyFilters);
   onlyRemizaCheckbox.addEventListener("change", applyFilters);
+  showUnofficialCheckbox.addEventListener("change", applyFilters);
+  showEmptyCheckbox.addEventListener("change", applyFilters);
   resetButton.addEventListener("click", resetFilters);
 
   applyFilters();
@@ -422,7 +540,7 @@ FILTER_SCRIPT = """
 """
 
 
-def build_legend_html(qualifying_places: int) -> str:
+def build_legend_html(qualifying_places: int, disciplines: List[str]) -> str:
     limit = qualifying_places
     items = [
         (
@@ -458,19 +576,76 @@ def build_legend_html(qualifying_places: int) -> str:
             "Postupuje: NE",
             "Nepostupuje (mimo postup z pořadí a bez volného slotu).",
         ),
+        (
+            "Kategorie mimo předpis ČSKe",
+            "Oranžové zvýraznění — kategorie je ve výsledcích, "
+            "ale není v oficiálním seznamu ČSKe (např. KATA U8).",
+        ),
+        (
+            "Prázdná kategorie",
+            "Oficiální kategorie ČSKe bez závodníků — zobrazena na konci "
+            "příslušné disciplíny (šedý rámeček).",
+        ),
     ]
     rows = "".join(
         f"<dt>{escape_html(label)}</dt><dd>{escape_html(text)}</dd>"
         for label, text in items
     )
+    disc_swatches = "".join(
+        (
+            f'<span class="swatch swatch-discipline" '
+            f'style="background:{escape_html(discipline_color(disc)["bg"])};'
+            f'border-left-color:{escape_html(discipline_color(disc)["accent"])};'
+            f'color:{escape_html(discipline_color(disc)["accent"])}">'
+            f'{escape_html(disc)}</span>'
+        )
+        for disc in disciplines
+    )
     return (
         f"<section id=\"legenda-postupu\" class=\"legend\">"
-        f"<h2>Legenda postupů</h2>"
+        f"<h2>Legenda</h2>"
         f"<p class=\"legend-intro\">Limit postupujících v kategorii: "
         f"<strong>{limit}</strong>.</p>"
+        f"<p class=\"legend-subtitle\">Disciplíny</p>"
+        f"<div class=\"legend-swatches\">{disc_swatches}</div>"
+        f"<p class=\"legend-subtitle\">Označení kategorií</p>"
+        f"<div class=\"legend-swatches\">"
+        f"<span class=\"swatch swatch-unofficial\">mimo předpis ČSKe</span>"
+        f"<span class=\"swatch swatch-empty\">prázdná oficiální</span>"
+        f"</div>"
+        f"<p class=\"legend-subtitle\">Postupy</p>"
         f"<dl>{rows}</dl>"
         f"</section>"
     )
+
+
+def build_discipline_color_css(disciplines: List[str]) -> str:
+    """CSS pravidla pro barevne odliseni disciplín."""
+    parts: list[str] = []
+    for disc in disciplines:
+        colors = discipline_color(disc)
+        slug = discipline_css_slug(disc)
+        accent = colors["accent"]
+        bg = colors["bg"]
+        parts.append(
+            f".discipline[data-discipline=\"{disc}\"] {{"
+            f" border-left: 6px solid {accent};"
+            f" background: linear-gradient(90deg, {bg} 0%, #ffffff 48px);"
+            f" }}"
+            f".discipline[data-discipline=\"{disc}\"] > h2 {{"
+            f" color: {accent};"
+            f" }}"
+            f".discipline[data-discipline=\"{disc}\"] > h2::before {{"
+            f" content: \"\";"
+            f" display: inline-block;"
+            f" width: 10px; height: 10px; border-radius: 2px;"
+            f" background: {accent}; margin-right: 8px; vertical-align: middle;"
+            f" }}"
+            f"option[data-discipline-slug=\"{slug}\"] {{"
+            f" color: {accent}; font-weight: 600;"
+            f" }}"
+        )
+    return "".join(parts)
 
 
 def generate_html(
@@ -507,7 +682,19 @@ def generate_html(
         category = row.get("Kategorie", "")
         by_category.setdefault(category, []).append(row)
 
-    sorted_categories = sorted(by_category.keys(), key=category_sort_key_from_display)
+    official_list = build_official_display_categories()
+    official_keys = official_category_keys(official_list)
+
+    filled_all = sorted(by_category.keys(), key=category_sort_key_from_display)
+    filled_official = [name for name in filled_all if normalizuj(name) in official_keys]
+    filled_unofficial = [name for name in filled_all if normalizuj(name) not in official_keys]
+    # Open / mimo predpis vzdy na konci (po prazdnych oficialnich)
+    empty_official = [
+        (disc, name)
+        for disc, name in official_list
+        if normalizuj(name) not in {normalizuj(c) for c in filled_all}
+    ]
+    empty_official.sort(key=lambda item: category_sort_key_from_display(item[1]))
 
     all_clubs = sorted({
         row.get("Klub", "").strip()
@@ -515,10 +702,14 @@ def generate_html(
         if row.get("Klub", "").strip()
     })
     categories_by_discipline: dict[str, list[str]] = defaultdict(list)
-    for category_name in sorted_categories:
+    for category_name in filled_official:
+        categories_by_discipline[discipline_from_category(category_name)].append(category_name)
+    for disc, name in empty_official:
+        if name not in categories_by_discipline[disc]:
+            categories_by_discipline[disc].append(name)
+    for category_name in filled_unofficial:
         categories_by_discipline[discipline_from_category(category_name)].append(category_name)
 
-    # Preferovane poradi (beginner i klasicke kata/kumite); zbytek abecedne.
     preferred_discipline_order = [
         "KARATE AGILITY",
         "KIHON IDO",
@@ -531,19 +722,28 @@ def generate_html(
     present_disciplines = set(categories_by_discipline.keys())
     discipline_order = [d for d in preferred_discipline_order if d in present_disciplines]
     discipline_order.extend(sorted(present_disciplines - set(discipline_order)))
+
+    all_categories_for_filter = (
+        filled_official
+        + [name for _disc, name in empty_official]
+        + filled_unofficial
+    )
     filter_data = {
         "clubs": all_clubs,
         "disciplines": discipline_order,
+        "disciplineColors": {
+            d: discipline_color(d) for d in discipline_order
+        },
         "categoriesByDiscipline": {
             d: categories_by_discipline[d] for d in discipline_order
         },
-        "allCategories": sorted_categories,
+        "allCategories": all_categories_for_filter,
     }
     filter_json = json.dumps(filter_data, ensure_ascii=False).replace("<", "\\u003c")
-    legend_html = build_legend_html(QUALIFYING_PLACES)
+    legend_html = build_legend_html(QUALIFYING_PLACES, discipline_order)
+    discipline_color_css = build_discipline_color_css(discipline_order)
 
-    disciplines: dict[str, list[str]] = defaultdict(list)
-    for category_name in sorted_categories:
+    def render_filled_category(category_name: str) -> str:
         category_rows = by_category[category_name]
         category_note = category_rows[0].get("Poznamka postupu", "").strip()
         rows_html = []
@@ -553,6 +753,8 @@ def generate_html(
             if row.get("Klub", "").strip()
         })
         disciplina = discipline_from_category(category_name)
+        is_official = normalizuj(category_name) in official_keys
+        is_open = "open" in normalizuj(category_name)
         for row in category_rows:
             firstname = row.get("Jméno", "")
             lastname = row.get("Příjmení", "")
@@ -603,10 +805,18 @@ def generate_html(
             else ""
         )
         clubs_json = json.dumps(clubs_in_category, ensure_ascii=False)
-        category_block = (
-            "<section class='category'"
+        classes = ["category"]
+        if not is_official:
+            classes.append("category-unofficial")
+        if is_open:
+            classes.append("category-open")
+        return (
+            f"<section class=\"{' '.join(classes)}\""
             f" data-discipline=\"{escape_html(disciplina)}\""
             f" data-category=\"{escape_html(category_name)}\""
+            f" data-official=\"{'1' if is_official else '0'}\""
+            f" data-open=\"{'1' if is_open else '0'}\""
+            f" data-empty=\"0\""
             f" data-clubs=\"{escape_html(clubs_json)}\">"
             f"<h3>{escape_html(category_name)}</h3>"
             f"{note_html}"
@@ -618,7 +828,33 @@ def generate_html(
             "</tr></thead>"
             f"<tbody>{''.join(rows_html)}</tbody></table></section>"
         )
-        disciplines[disciplina].append(category_block)
+
+    def render_empty_category(disciplina: str, category_name: str) -> str:
+        return (
+            f"<section class=\"category category-empty\""
+            f" data-discipline=\"{escape_html(disciplina)}\""
+            f" data-category=\"{escape_html(category_name)}\""
+            f" data-official=\"1\""
+            f" data-open=\"0\""
+            f" data-empty=\"1\""
+            f" data-clubs=\"[]\">"
+            f"<h3>{escape_html(category_name)}</h3>"
+            f"<p class=\"category-empty-msg\">Žádní závodníci LSKe v této kategorii.</p>"
+            f"</section>"
+        )
+
+    disciplines: dict[str, list[str]] = defaultdict(list)
+    # 1) oficialni s vysledky, 2) prazdne oficialni, 3) Open / mimo predpis na konci
+    for category_name in filled_official:
+        disciplines[discipline_from_category(category_name)].append(
+            render_filled_category(category_name)
+        )
+    for disc, name in empty_official:
+        disciplines[disc].append(render_empty_category(disc, name))
+    for category_name in filled_unofficial:
+        disciplines[discipline_from_category(category_name)].append(
+            render_filled_category(category_name)
+        )
 
     discipline_html = []
     for disciplina in discipline_order:
@@ -659,8 +895,22 @@ def generate_html(
     }}
     a.col-legend-link:hover {{ text-decoration: underline; }}
     .discipline {{ background: white; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
+    .discipline > h2 {{ margin: 0 0 4px; font-size: 22px; }}
+    {discipline_color_css}
     .category {{ margin-top: 16px; }}
     .category-note {{ margin: 4px 0 12px; padding: 8px 12px; background: #fff8e1; border-left: 4px solid #f9a825; font-size: 14px; }}
+    .category-unofficial {{
+      background: #fff3e0; border-left: 4px solid #ef6c00; padding: 12px 12px 12px 16px; border-radius: 8px;
+    }}
+    .category-unofficial h3 {{ color: #e65100; }}
+    .category-unofficial h3::after {{
+      content: " (mimo predpis CSKe)"; font-size: 12px; font-weight: 600; color: #ef6c00; margin-left: 6px;
+    }}
+    .category-empty {{
+      background: #fafafa; border: 1px dashed #bdbdbd; padding: 10px 14px; border-radius: 8px; opacity: 0.9;
+    }}
+    .category-empty h3 {{ color: #616161; font-weight: 600; }}
+    .category-empty-msg {{ margin: 6px 0 0; color: #757575; font-size: 14px; }}
     table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
     th, td {{ border-bottom: 1px solid #e0e0e0; padding: 8px; text-align: left; vertical-align: top; }}
     th {{ background: #f5f5f5; }}
@@ -675,7 +925,7 @@ def generate_html(
       margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }}
     .filters-row {{ display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }}
-    .filter-field {{ display: flex; flex-direction: column; gap: 4px; min-width: 180px; flex: 1; }}
+    .filter-field {{ display: flex; flex-direction: column; gap: 4px; min-width: 160px; flex: 1; }}
     .filter-field label {{ font-size: 12px; font-weight: 600; color: #555; text-transform: uppercase; }}
     .filter-field select, .filters button {{
       font: inherit; padding: 8px 10px; border: 1px solid #ccc; border-radius: 8px; background: white;
@@ -698,7 +948,16 @@ def generate_html(
       scroll-margin-top: 24px;
     }}
     .legend h2 {{ margin: 0 0 8px; font-size: 20px; color: #3949ab; }}
-    .legend-intro {{ margin: 0 0 16px; font-size: 14px; color: #555; }}
+    .legend-intro {{ margin: 0 0 12px; font-size: 14px; color: #555; }}
+    .legend-subtitle {{ margin: 14px 0 8px; font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; }}
+    .legend-swatches {{ display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }}
+    .swatch {{
+      display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #444;
+      padding: 6px 10px; border-radius: 8px; border-left: 4px solid transparent; font-weight: 600;
+    }}
+    .swatch-discipline {{ font-weight: 700; }}
+    .swatch-unofficial {{ background: #fff3e0; border-left: 4px solid #ef6c00; }}
+    .swatch-empty {{ background: #fafafa; border: 1px dashed #bdbdbd; }}
     .legend dl {{ margin: 0; display: grid; gap: 12px; }}
     .legend dt {{ font-weight: 600; font-size: 14px; color: #222; }}
     .legend dd {{ margin: 4px 0 0; font-size: 14px; color: #444; line-height: 1.45; }}
@@ -733,11 +992,11 @@ def generate_html(
           <select id="filter-club"><option value="">Vše</option></select>
         </div>
         <div class="filter-field">
-          <label for="filter-main">Hlavní</label>
+          <label for="filter-main">Disciplína</label>
           <select id="filter-main"><option value="">Vše</option></select>
         </div>
         <div class="filter-field">
-          <label for="filter-detail">Detail</label>
+          <label for="filter-detail">Kategorie</label>
           <select id="filter-detail"><option value="">Vše</option></select>
         </div>
         <button type="button" id="filter-reset">Zrušit filtry</button>
@@ -754,6 +1013,14 @@ def generate_html(
         <label>
           <input type="checkbox" id="filter-only-remiza">
           <span>Jen remízy</span>
+        </label>
+        <label>
+          <input type="checkbox" id="filter-show-unofficial" checked>
+          <span>Zobrazit mimo předpis ČSKe</span>
+        </label>
+        <label>
+          <input type="checkbox" id="filter-show-empty" checked>
+          <span>Zobrazit prázdné oficiální</span>
         </label>
       </div>
       <p class="filter-status" id="filter-status"></p>
