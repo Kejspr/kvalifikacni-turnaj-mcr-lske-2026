@@ -540,7 +540,41 @@ FILTER_SCRIPT = """
 """
 
 
-def build_legend_html(qualifying_places: int, disciplines: List[str]) -> str:
+def build_discipline_swatches_html(disciplines: List[str]) -> str:
+    """Barevne swatche disciplín."""
+    return "".join(
+        (
+            f'<span class="swatch swatch-discipline" '
+            f'style="background:{escape_html(discipline_color(disc)["bg"])};'
+            f'border-left-color:{escape_html(discipline_color(disc)["accent"])};'
+            f'color:{escape_html(discipline_color(disc)["accent"])}">'
+            f'{escape_html(disc)}</span>'
+        )
+        for disc in disciplines
+    )
+
+
+def build_color_key_html(disciplines: List[str]) -> str:
+    """Kompaktni legenda barev pod filtry."""
+    return (
+        f'<section class="color-key" aria-label="Legenda barev">'
+        f'<div class="color-key-block">'
+        f'<p class="legend-subtitle">Disciplíny</p>'
+        f'<div class="legend-swatches">{build_discipline_swatches_html(disciplines)}</div>'
+        f"</div>"
+        f'<div class="color-key-block">'
+        f'<p class="legend-subtitle">Označení kategorií</p>'
+        f'<div class="legend-swatches">'
+        f'<span class="swatch swatch-unofficial">mimo offic. kategorie</span>'
+        f'<span class="swatch swatch-empty">prázdná oficiální</span>'
+        f"</div>"
+        f"</div>"
+        f"</section>"
+    )
+
+
+def build_legend_html(qualifying_places: int) -> str:
+    """Dolni legenda postupu (bez barevnych swatchu)."""
     limit = qualifying_places
     items = [
         (
@@ -591,28 +625,11 @@ def build_legend_html(qualifying_places: int, disciplines: List[str]) -> str:
         f"<dt>{escape_html(label)}</dt><dd>{escape_html(text)}</dd>"
         for label, text in items
     )
-    disc_swatches = "".join(
-        (
-            f'<span class="swatch swatch-discipline" '
-            f'style="background:{escape_html(discipline_color(disc)["bg"])};'
-            f'border-left-color:{escape_html(discipline_color(disc)["accent"])};'
-            f'color:{escape_html(discipline_color(disc)["accent"])}">'
-            f'{escape_html(disc)}</span>'
-        )
-        for disc in disciplines
-    )
     return (
         f"<section id=\"legenda-postupu\" class=\"legend\">"
         f"<h2>Legenda</h2>"
         f"<p class=\"legend-intro\">Limit postupujících v kategorii: "
         f"<strong>{limit}</strong>.</p>"
-        f"<p class=\"legend-subtitle\">Disciplíny</p>"
-        f"<div class=\"legend-swatches\">{disc_swatches}</div>"
-        f"<p class=\"legend-subtitle\">Označení kategorií</p>"
-        f"<div class=\"legend-swatches\">"
-        f"<span class=\"swatch swatch-unofficial\">mimo offic. kategorie</span>"
-        f"<span class=\"swatch swatch-empty\">prázdná oficiální</span>"
-        f"</div>"
         f"<p class=\"legend-subtitle\">Postupy</p>"
         f"<dl>{rows}</dl>"
         f"</section>"
@@ -740,7 +757,8 @@ def generate_html(
         "allCategories": all_categories_for_filter,
     }
     filter_json = json.dumps(filter_data, ensure_ascii=False).replace("<", "\\u003c")
-    legend_html = build_legend_html(QUALIFYING_PLACES, discipline_order)
+    color_key_html = build_color_key_html(discipline_order)
+    legend_html = build_legend_html(QUALIFYING_PLACES)
     discipline_color_css = build_discipline_color_css(discipline_order)
 
     def render_filled_category(category_name: str) -> str:
@@ -938,6 +956,14 @@ def generate_html(
     .filter-checkboxes input {{ width: 16px; height: 16px; cursor: pointer; }}
     .filter-checkboxes input:disabled + span {{ color: #999; cursor: not-allowed; }}
     .filter-status {{ margin-top: 12px; font-size: 14px; color: #555; }}
+    .color-key {{
+      background: white; border-radius: 12px; padding: 14px 20px 16px;
+      margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: start;
+    }}
+    .color-key-block {{ min-width: 200px; }}
+    .color-key .legend-subtitle {{ margin: 0 0 8px; }}
+    .color-key .legend-swatches {{ margin-bottom: 0; }}
     tr.club-highlight {{ background: #e8f5e9; }}
     tr.club-highlight td {{ border-bottom-color: #c8e6c9; }}
     tr.club-highlight td:nth-child(3) {{ font-weight: 600; color: #2e7d32; }}
@@ -1025,6 +1051,7 @@ def generate_html(
       </div>
       <p class="filter-status" id="filter-status"></p>
     </section>
+    {color_key_html}
     {''.join(discipline_html)}
     {legend_html}
     </div>
