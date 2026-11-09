@@ -14,3 +14,58 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Matěj Rybín - KATA chlapci U10
+Petr Brugoš - KATA chlapci U10
+Martin Lutsiuk - KATA chlapci U11
+Petr Skorčík - KATA chlapci U11
+Jakub Hála - KATA chlapci U12
+Kryštof Kováč - KATA chlapci U13
+Artur Jančevskyj - KATA chlapci U14
+Mikuláš Trávníček - KATA chlapci U14
+Vendelín Pavlík - KATA chlapci U14
+Šimon Véle - KATA chlapci U8
+David Kalina - KATA dorostenci
+Filip-Akira Sokol - KATA dorostenci
+Karolína Trávníčková - KATA dorostenky
+Myroslava Savko - KATA dorostenky
+Linda Trávníčková - KATA dívky U12
+Natálie Jágrová - KATA dívky U12
+Kateřina Stehlíková - KATA dívky U13
+Soňa-Pavlína Pfeifrová - KATA dívky U14
+Štěpán Stupka - KATA junioři
+Petr Brugoš - KUMITE chlapci U10 +32 kg
+Matěj Rybín - KUMITE chlapci U10 -27 kg
+Matěj Tůma - KUMITE chlapci U10 -27 kg
+Matěj Rybín - KUMITE chlapci U10 -32 kg
+Petr Skorčík - KUMITE chlapci U12 +45 kg
+Jakub Hála - KUMITE chlapci U12 -30 kg
+Martin Lutsiuk - KUMITE chlapci U12 -30 kg
+Petr Skorčík - KUMITE chlapci U12 -40 kg
+Petr Skorčík - KUMITE chlapci U12 -45 kg
+Jakub Adámek - KUMITE chlapci U14 +55 kg
+František Němec - KUMITE chlapci U14 -40 kg
+Kryštof Kováč - KUMITE chlapci U14 -40 kg
+Vendelín Pavlík - KUMITE chlapci U14 -40 kg
+Artur Jančevskyj - KUMITE chlapci U14 -45 kg
+František Němec - KUMITE chlapci U14 -45 kg
+Jakub Michalec - KUMITE chlapci U14 -50 kg
+David Kalina - KUMITE dorostenci -52 kg
+Filip-Akira Sokol - KUMITE dorostenci -52 kg
+Filip-Akira Sokol - KUMITE dorostenci -57 kg
+Robin Hlaváček - KUMITE dorostenci -57 kg
+Andrea Michalcová - KUMITE dorostenky +61 kg
+Karolína Trávníčková - KUMITE dorostenky -47 kg
+Natálie Uhmannová - KUMITE dorostenky -47 kg
+Sofie Horňáková - KUMITE dorostenky -47 kg
+Karolína Trávníčková - KUMITE dorostenky -54 kg
+Myroslava Savko - KUMITE dorostenky -54 kg
+Natálie Uhmannová - KUMITE dorostenky -54 kg
+Myroslava Savko - KUMITE dorostenky -61 kg
+Emílie Součková - KUMITE dívky U12 +40 kg
+Linda Trávníčková - KUMITE dívky U12 -30 kg
+Natálie Jágrová - KUMITE dívky U12 -30 kg
+Soňa-Pavlína Pfeifrová - KUMITE dívky U14 +52 kg
+Eliška Kalinová - KUMITE dívky U14 -42 kg
+Kateřina Stehlíková - KUMITE dívky U14 -47 kg
+Štěpán Stehlík - KUMITE junioři -61 kg
+Štěpán Stupka - KUMITE junioři -61 kg

@@ -14,3 +14,15 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Bartoloměj Žďánský - KATA chlapci U13
+Jakub Krejčíř - KUMITE chlapci U12 +45 kg
+Šárka Kurfiřtová - KATA dívky U12
+Pavlína Lhotaková - KATA dívky U12
+Monika Kadlecová - KUMITE dívky U12 -30 kg
+Šárka Kurfiřtová - KUMITE dívky U12 -35 kg
+Pavlína Lhotaková - KUMITE dívky U12 -35 kg
+Pavlína Lhotaková - KUMITE dívky U12 -40 kg
+Rozálie Krejčířová - KUMITE dívky U10 +30 kg
+Marie Hertíková - KUMITE dívky U10 +30 kg
+Benjamin Minařík - KUMITE chlapci U10 -32 kg
+David Jarolím - KUMITE chlapci U12 -35 kg
