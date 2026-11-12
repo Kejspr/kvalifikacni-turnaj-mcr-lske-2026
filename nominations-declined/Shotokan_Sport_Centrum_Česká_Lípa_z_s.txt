@@ -14,3 +14,8 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Jakub Šrubař - KATA chlapci U14
+Jan Šolc - KATA chlapci U13
+Jakub Šrubař - KUMITE chlapci U14 +55 kg
+Jakub Šrubař - KUMITE chlapci U14 -45 kg
+Jan Matoušek - KUMITE dorostenci -57 kg

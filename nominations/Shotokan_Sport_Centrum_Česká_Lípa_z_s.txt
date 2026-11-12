@@ -14,4 +14,24 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Ondřej Nosák - KATA chlapci U12
+Phuc-Tiep Nguyen - KATA chlapci U12
+Adéla Kočová - KATA dívky U12
+Eliška Lebedová - KATA dívky U13
+Jeva Onacka - KATA dívky U13
+Nikita Kravčenko - KATA dorostenci
+Tomáš Fojtík - KATA dorostenci
+Jan Matoušek - KATA dorostenci
+Nela Skořepová - KATA dorostenky
+Marie Dalíková - KATA dorostenky
+Phuc-Tiep Nguyen - KUMITE chlapci U12 +45 kg
+Ondřej Nosák - KUMITE chlapci U12 +45 kg
 Adéla Kočová - KUMITE dívky U12 -30 kg
+Jan Šolc - KUMITE chlapci U14 +55 kg
+Jan Šolc - KUMITE chlapci U14 -55 kg
+Eliška Lebedová - KUMITE dívky U14 +52 kg
+Jeva Onacka - KUMITE dívky U14 -42 kg
+Tomáš Fojtík - KUMITE dorostenci -63 kg
+Jan Matoušek - KUMITE dorostenci -52 kg
+Nikita Kravčenko - KUMITE dorostenci -70 kg
+Nela Skořepová - KUMITE dorostenky -47 kg
