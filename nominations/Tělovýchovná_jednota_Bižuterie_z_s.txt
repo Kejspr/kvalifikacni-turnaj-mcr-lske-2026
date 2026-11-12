@@ -14,3 +14,14 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+Martin Koutný - KUMITE chlapci U12 -35 kg
+Vojtěch Makovička - KUMITE chlapci U12 -35 kg
+Sophia Petrů - KUMITE dívky U12 +40 kg
+Jan Adamec - KUMITE chlapci U12 -40 kg
+Adam Müller - KUMITE chlapci U14 -45 kg
+Tadeáš Cipra - KUMITE chlapci U14 -55 kg
+Kristýna Klabanová - KUMITE dívky U14 +52 kg
+Šárka Bulířová - KUMITE dorostenky -61 kg
+Zuzana Bulířová - KUMITE dorostenky +61 kg
+Vít Mečíř - KUMITE junioři -68 kg
+

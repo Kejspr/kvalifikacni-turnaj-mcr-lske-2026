@@ -14,3 +14,8 @@
 # Radky zacinajici # se ignoruji.
 # Prazdne radky se ignoruji.
 
+# Nominace z NP (klub nenominuje, uvolnuje slot)
+Anna Klabanová - KUMITE dívky U12 +40 kg
+Valeria Nikonorová - KUMITE dorostenky -61 kg
+Štěpánka Kubíková - KUMITE dívky U10 -30 kg
+
