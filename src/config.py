@@ -37,6 +37,8 @@ FINAL_EXPORT_CSV = BASE_DIR / "final-postupujici.csv"
 FINAL_EXPORT_TSV = BASE_DIR / "final-postupujici.tsv"
 FINAL_EXPORT_TXT = BASE_DIR / "final-postupujici.txt"
 FINAL_EXPORT_HTML = BASE_DIR / "final-postupujici.html"
+# Rucni upravy finalniho seznamu (mimo vysledky) - viz generate_final_export.py
+MANUAL_EDITS_FILE = BASE_DIR / "rucni-upravy.txt"
 FINAL_EXPORT_TITLE = "Konecny seznam postupujicich - Kvalifikacni turnaj MCR Beginner LSKe 2025/2026"
 
 # HTML prezentace (GitHub Pages)
