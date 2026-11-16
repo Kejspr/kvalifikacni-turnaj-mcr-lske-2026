@@ -24,6 +24,7 @@ from pathlib import Path
 
 from config import (
     AGGREGATED_XML,
+    ATHLETE_CLUB_TRANSFERS,
     BASE_DIR,
     TOURNAMENT_TITLE,
     WORKING_DIR,
@@ -308,7 +309,10 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
         })
 
     merge_duplicate_athletes(category_data)
-    apply_current_clubs(category_data, build_current_club_index(all_results))
+    current_clubs = build_current_club_index(all_results)
+    for key, (club, club_id) in ATHLETE_CLUB_TRANSFERS.items():
+        current_clubs[key] = ("9999-99-99", club, club_id)  # prestup po vsech kolech
+    apply_current_clubs(category_data, current_clubs)
 
     root = ET.Element("tournament")
     ET.SubElement(root, "id").text = "aggregated"
