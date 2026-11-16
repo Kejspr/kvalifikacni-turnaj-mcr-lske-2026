@@ -35,8 +35,13 @@ from config import (
     FINAL_EXPORT_TXT,
     MANUAL_EDITS_FILE,
 )
-from generate_presentation import category_sort_key_from_display, load_csv_rows
+from generate_presentation import (
+    build_official_display_categories,
+    load_csv_rows,
+    official_category_keys,
+)
 from qualification import is_ano_value
+from utils import bez_diakritiky, normalizuj
 
 
 EXPORT_COLUMNS = [
@@ -84,12 +89,61 @@ def _full_name(row: dict) -> str:
     return _norm(f"{row['Jmeno']} {row['Prijmeni']}")
 
 
+# Poradi vekovych skupin ve finalnim exportu (od nejmladsich)
+AGE_GROUPS = [
+    ("u8",),
+    ("u10",),
+    ("u11",),
+    ("u12",),
+    ("u13",),
+    ("u14",),
+    ("dorostenci", "dorostenky"),
+    ("juniori", "juniorky"),
+    ("u21",),
+    ("muzi", "zeny"),
+    ("masters",),
+]
+
+GENDER_FIRST = {"chlapci", "dorostenci", "juniori", "muzi"}
+GENDER_SECOND = {"divky", "dorostenky", "juniorky", "zeny"}
+
+
 def final_category_sort_key(category: str) -> tuple:
-    """Finalni vystup: vsechny KATA kategorie pred vsemi KUMITE kategoriemi."""
-    discipline = category.split(None, 1)[0].upper() if category else ""
+    """Finalni vystup: KATA pred KUMITE, pak podle veku (U10 -> Uxx), pohlavi a vahy."""
+    tokens = bez_diakritiky(category).casefold().split()
+    discipline = tokens[0].upper() if tokens else ""
+
+    age_order = 999
+    if "masters" in tokens:
+        age_order = next(i for i, g in enumerate(AGE_GROUPS) if "masters" in g)
+    else:
+        for i, group in enumerate(AGE_GROUPS):
+            if any(token in tokens for token in group):
+                age_order = i
+                break
+
+    gender_order = 999
+    for token in tokens:
+        if token in GENDER_FIRST:
+            gender_order = 0
+            break
+        if token in GENDER_SECOND:
+            gender_order = 1
+            break
+
+    weight_order = (0, 0)
+    for token in tokens:
+        raw = token.replace("kg", "")
+        if raw.startswith(("-", "+")) and raw[1:].isdigit():
+            weight_order = (1 if raw[0] == "+" else 0, int(raw[1:]))
+            break
+
     return (
         DISCIPLINE_ORDER.get(discipline, 999),
-        category_sort_key_from_display(category),
+        age_order,
+        gender_order,
+        weight_order,
+        category,
     )
 
 
@@ -193,6 +247,12 @@ def filter_postupujici(
     errors = apply_manual_edits(filtered, rows, manual_edits or [], manual_source)
     # Open kategorie (mimo predpis) do finalniho exportu nepatri
     filtered = [row for row in filtered if not is_open_category(row["Kategorie"])]
+    # Jen oficialni kategorie CSKe (dle predpisu MCR)
+    official_keys = official_category_keys(build_official_display_categories())
+    skipped = sorted({row["Kategorie"] for row in filtered if normalizuj(row["Kategorie"]) not in official_keys})
+    for category in skipped:
+        print(f"Vynechano (neoficialni kategorie): {category}")
+    filtered = [row for row in filtered if normalizuj(row["Kategorie"]) in official_keys]
     filtered.sort(
         key=lambda row: (
             final_category_sort_key(row["Kategorie"]),
