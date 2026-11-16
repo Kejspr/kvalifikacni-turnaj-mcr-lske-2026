@@ -22,7 +22,13 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-from config import AGGREGATED_XML, BASE_DIR, TOURNAMENT_TITLE, WORKING_DIR
+from config import (
+    AGGREGATED_XML,
+    ATHLETE_CURRENT_CLUB_OVERRIDES,
+    BASE_DIR,
+    TOURNAMENT_TITLE,
+    WORKING_DIR,
+)
 from nomination_io import ensure_nomination_files
 from utils import (
     bez_diakritiky,
@@ -212,6 +218,20 @@ def merge_duplicate_athletes(category_data: dict) -> None:
             del category_data[category_key][key]
 
 
+def apply_current_club_overrides(category_data: dict) -> None:
+    """Nastavi aktualni klub bez prepisu historickych vysledku jednotlivych kol."""
+    for athletes in category_data.values():
+        for athlete in athletes.values():
+            key = (
+                normalizuj(athlete["firstname"]),
+                normalizuj(athlete["lastname"]),
+                (athlete["birthday"] or "").strip(),
+            )
+            override = ATHLETE_CURRENT_CLUB_OVERRIDES.get(key)
+            if override:
+                athlete["club"], athlete["club_id"] = override
+
+
 def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
     category_data = defaultdict(lambda: defaultdict(lambda: {
         "competitor_ids": set(),
@@ -267,6 +287,7 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
         })
 
     merge_duplicate_athletes(category_data)
+    apply_current_club_overrides(category_data)
 
     root = ET.Element("tournament")
     ET.SubElement(root, "id").text = "aggregated"
