@@ -67,3 +67,30 @@ Eliška Kalinová - KUMITE dívky U14 -42 kg
 Kateřina Stehlíková - KUMITE dívky U14 -47 kg
 Štěpán Stehlík - KUMITE junioři -61 kg
 Štěpán Stupka - KUMITE junioři -61 kg
+
+# Ostatni starty SKK, ktere klub nepotvrdil
+Matěj Tůma - KATA chlapci U10
+Jakub Michalec - KATA chlapci U13
+Jan Zuzánek - KATA chlapci U13
+Filip Janovics - KATA chlapci U14
+František Němec - KATA chlapci U14
+Kryštof-Cheyenne Michel - KATA chlapci U14
+Vilém Antonický - KATA chlapci U14
+Robin Hlaváček - KATA dorostenci
+Andrea Michalcová - KATA dorostenky
+Natálie Uhmannová - KATA dorostenky
+Sofie Horňáková - KATA dorostenky
+Anika Němcová - KATA dívky U10
+Laura Horňáková - KATA dívky U10
+Emílie Součková - KATA dívky U12
+Raya-Ivanova Uzunova - KATA dívky U13
+Šimon Véle - KUMITE chlapci U10 -27 kg
+Jakub Hála - KUMITE chlapci U12 -35 kg
+Jakub Michalec - KUMITE chlapci U14 +55 kg
+Jan Zuzánek - KUMITE chlapci U14 -40 kg
+Mikuláš Trávníček - KUMITE chlapci U14 -40 kg
+Vilém Antonický - KUMITE chlapci U14 -40 kg
+Vilém Antonický - KUMITE chlapci U14 -45 kg
+Anika Němcová - KUMITE dívky U10 +30 kg
+Nela Skorčíková - KUMITE dívky U10 +30 kg
+Laura Horňáková - KUMITE dívky U10 -30 kg

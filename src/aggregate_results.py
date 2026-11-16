@@ -24,7 +24,6 @@ from pathlib import Path
 
 from config import (
     AGGREGATED_XML,
-    ATHLETE_CURRENT_CLUB_OVERRIDES,
     BASE_DIR,
     TOURNAMENT_TITLE,
     WORKING_DIR,
@@ -218,8 +217,30 @@ def merge_duplicate_athletes(category_data: dict) -> None:
             del category_data[category_key][key]
 
 
-def apply_current_club_overrides(category_data: dict) -> None:
-    """Nastavi aktualni klub bez prepisu historickych vysledku jednotlivych kol."""
+def build_current_club_index(all_results: list[dict]) -> dict:
+    """Vrati klub z chronologicky posledniho vysledku kazdeho zavodnika."""
+    current_clubs = {}
+    for row in all_results:
+        if not row["club"]:
+            continue
+        key = (
+            normalizuj(row["firstname"]),
+            normalizuj(row["lastname"]),
+            (row["birthday"] or "").strip(),
+        )
+        candidate = (
+            (row["tournament_date"] or "").strip(),
+            row["club"],
+            row["club_id"],
+        )
+        existing = current_clubs.get(key)
+        if existing is None or candidate[0] >= existing[0]:
+            current_clubs[key] = candidate
+    return current_clubs
+
+
+def apply_current_clubs(category_data: dict, current_clubs: dict) -> None:
+    """Nastavi klub z posledniho kola bez prepisu historickych vysledku."""
     for athletes in category_data.values():
         for athlete in athletes.values():
             key = (
@@ -227,9 +248,9 @@ def apply_current_club_overrides(category_data: dict) -> None:
                 normalizuj(athlete["lastname"]),
                 (athlete["birthday"] or "").strip(),
             )
-            override = ATHLETE_CURRENT_CLUB_OVERRIDES.get(key)
-            if override:
-                athlete["club"], athlete["club_id"] = override
+            latest = current_clubs.get(key)
+            if latest:
+                _date, athlete["club"], athlete["club_id"] = latest
 
 
 def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
@@ -287,7 +308,7 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
         })
 
     merge_duplicate_athletes(category_data)
-    apply_current_club_overrides(category_data)
+    apply_current_clubs(category_data, build_current_club_index(all_results))
 
     root = ET.Element("tournament")
     ET.SubElement(root, "id").text = "aggregated"

@@ -109,20 +109,6 @@ CLUB_NAME_MAP = {
 }
 
 # ---------------------------------------------------------------------------
-# Aktualni klub zavodnika po prestupu
-# ---------------------------------------------------------------------------
-# Klic: (jmeno bez diakritiky a malymi pismeny,
-#        prijmeni bez diakritiky a malymi pismeny,
-#        birthday z XML)
-# Hodnota: (aktualni klub, club_id z posledniho znameho kola)
-#
-# Historicke vysledky v original/ zustavaji beze zmeny. Override se pouzije
-# pouze pro klub zobrazeny v agregovanem poradi a v nominacich.
-ATHLETE_CURRENT_CLUB_OVERRIDES = {
-    ("natalie", "jagrova", "1445900400"): ("GRYF z.s.", "2193"),
-}
-
-# ---------------------------------------------------------------------------
 # Platne kluby LSKe (po aplikaci CLUB_NAME_MAP)
 # Vysledky jinych klubu se pri fix odstrani z pracovni/ - jako by nebyly.
 # ---------------------------------------------------------------------------

@@ -46,6 +46,11 @@ EXPORT_COLUMNS = [
     "Klub",
 ]
 
+DISCIPLINE_ORDER = {
+    "KATA": 0,
+    "KUMITE": 1,
+}
+
 
 def escape_html(text: str) -> str:
     return (
@@ -77,6 +82,15 @@ def _norm(text: str) -> str:
 
 def _full_name(row: dict) -> str:
     return _norm(f"{row['Jmeno']} {row['Prijmeni']}")
+
+
+def final_category_sort_key(category: str) -> tuple:
+    """Finalni vystup: vsechny KATA kategorie pred vsemi KUMITE kategoriemi."""
+    discipline = category.split(None, 1)[0].upper() if category else ""
+    return (
+        DISCIPLINE_ORDER.get(discipline, 999),
+        category_sort_key_from_display(category),
+    )
 
 
 def _split_name(full_name: str) -> tuple:
@@ -181,7 +195,7 @@ def filter_postupujici(
     filtered = [row for row in filtered if not is_open_category(row["Kategorie"])]
     filtered.sort(
         key=lambda row: (
-            category_sort_key_from_display(row["Kategorie"]),
+            final_category_sort_key(row["Kategorie"]),
             int(str(row["_sort_poradi"]).replace(".", "") or "9999"),
             row["Prijmeni"],
             row["Jmeno"],
@@ -321,8 +335,11 @@ def write_html(rows: List[dict], output_path: Path, generated_at: str) -> None:
       background: #f5f7fa;
     }}
     @media print {{
-      body {{ padding: 12px; }}
-      .category {{ page-break-inside: avoid; }}
+      @page {{ size: A4; margin: 12mm; }}
+      body {{ padding: 0; }}
+      .category {{ break-inside: avoid-page; page-break-inside: avoid; }}
+      .category h2 {{ break-after: avoid-page; }}
+      .category table {{ break-inside: avoid-page; }}
       a {{ color: inherit; text-decoration: none; }}
     }}
   </style>

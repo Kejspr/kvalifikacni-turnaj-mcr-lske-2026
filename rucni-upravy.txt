@@ -10,6 +10,6 @@
 # Text za # je komentar (zdroj, datum).
 
 PRESUN | Adéla Kočová | KUMITE dívky U12 -30 kg | KUMITE dívky U12 -35 kg   # email Pepa (SSC Česká Lípa), 15.11.2026
-ODEBRAT | Jakub Michalec | KUMITE chlapci U14 +55 kg   # SKK Liberec: Michalec nepojede, 15.11.2026
+# Vyrizeno primo pres nominations-declined/SKK: Jakub Michalec - KUMITE chlapci U14 +55 kg
 PRESUN | Filip Janovics | KUMITE chlapci U14 -55 kg | KUMITE chlapci U14 +55 kg   # SKK Liberec: presun na uvolnene misto po Michalcovi, 15.11.2026
 PRIDAT | Filip Hoffmann | KUMITE junioři -61 kg | GRYF z.s.   # GRYF (T. Reyneltova): nominace navic, kategorie za kraj prazdna, 15.11.2026
