@@ -29,7 +29,6 @@ Filip-Akira Sokol - KATA dorostenci
 Karolína Trávníčková - KATA dorostenky
 Myroslava Savko - KATA dorostenky
 Linda Trávníčková - KATA dívky U12
-Natálie Jágrová - KATA dívky U12
 Kateřina Stehlíková - KATA dívky U13
 Soňa-Pavlína Pfeifrová - KATA dívky U14
 Štěpán Stupka - KATA junioři
@@ -63,7 +62,6 @@ Natálie Uhmannová - KUMITE dorostenky -54 kg
 Myroslava Savko - KUMITE dorostenky -61 kg
 Emílie Součková - KUMITE dívky U12 +40 kg
 Linda Trávníčková - KUMITE dívky U12 -30 kg
-Natálie Jágrová - KUMITE dívky U12 -30 kg
 Soňa-Pavlína Pfeifrová - KUMITE dívky U14 +52 kg
 Eliška Kalinová - KUMITE dívky U14 -42 kg
 Kateřina Stehlíková - KUMITE dívky U14 -47 kg
