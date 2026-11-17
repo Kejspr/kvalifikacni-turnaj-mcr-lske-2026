@@ -78,8 +78,8 @@ def write_txt(rows: List[dict], output_path: Path, generated_at: str) -> None:
 
     lines = [
         FINAL_EXPORT_TITLE,
-        f"Vygenerovano: {generated_at}",
-        f"Celkem postupujicich: {len(rows)} | Kategorii: {len(by_category)}",
+        f"Vygenerováno: {generated_at}",
+        f"Celkem postupujících: {len(rows)} | Kategorií: {len(by_category)}",
         "",
     ]
     for category, category_rows in by_category.items():
@@ -111,7 +111,7 @@ def write_html(rows: List[dict], output_path: Path, generated_at: str) -> None:
             f"<h2>{escape_html(category)} <span class=\"count\">({len(category_rows)})</span></h2>"
             "<table>"
             "<thead><tr>"
-            "<th>Zavodnik</th><th>Klub</th>"
+            "<th>Závodník</th><th>Klub</th>"
             "</tr></thead>"
             f"<tbody>{''.join(body_rows)}</tbody>"
             "</table>"
@@ -197,8 +197,8 @@ def write_html(rows: List[dict], output_path: Path, generated_at: str) -> None:
 <body>
   <header>
     <h1>{escape_html(FINAL_EXPORT_TITLE)}</h1>
-    <div class="meta">Vygenerovano: {escape_html(generated_at)}</div>
-    <div class="summary">Celkem postupujicich: {len(rows)} | Kategorii: {len(by_category)}</div>
+    <div class="meta">Vygenerováno: {escape_html(generated_at)}</div>
+    <div class="summary">Celkem postupujících: {len(rows)} | Kategorií: {len(by_category)}</div>
   </header>
   {''.join(sections)}
 </body>
@@ -225,7 +225,7 @@ def generate_final_export(
         for message in errors:
             print(f"  {message}")
         return 1
-    generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
+    generated_at = datetime.now().strftime("%-d. %-m. %Y %H:%M")
 
     write_csv(filtered, csv_out)
     write_tsv(filtered, tsv_out)
