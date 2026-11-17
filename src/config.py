@@ -108,18 +108,8 @@ CLUB_NAME_MAP = {
     "TJ Bižuterie, o.s., oddíl KABU Jablonec": "Tělovýchovná jednota Bižuterie, z.s.",
 }
 
-# ---------------------------------------------------------------------------
-# Prestupy po poslednim kole (data o novem klubu ve vysledcich nejsou)
-# ---------------------------------------------------------------------------
-# Klub se jinak bere automaticky z posledniho kola, kde zavodnik startoval.
-# Tady jen prestupy, ktere ve vysledcich nejsou - maji prednost.
-# Klic: (jmeno, prijmeni - bez diakritiky malymi pismeny, birthday z XML)
-# Hodnota: (novy klub, club_id z posledniho kola)
-# Historicke vysledky v original/ zustavaji beze zmeny.
-ATHLETE_CLUB_TRANSFERS = {
-    # Vladislav Pinzari: GRYF -> SKK, prestup az po vsech kolech
-    ("vladislav", "pinzari", "1369864800"): ("SK KARATE - SHOTOKAN LIBEREC, z.s.", "2194"),
-}
+# Prestupy po poslednim kole (mimo vysledky) se zapisuji do rucni-upravy.txt
+# jako PRESTUP | Jmeno Prijmeni | puvodni klub | novy klub  (viz manual_edits.py).
 
 # ---------------------------------------------------------------------------
 # Platne kluby LSKe (po aplikaci CLUB_NAME_MAP)

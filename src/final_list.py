@@ -12,7 +12,6 @@ Vypocet konecneho seznamu postupujicich - spolecny pro finalni export
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
 from typing import List
 
@@ -22,6 +21,7 @@ from generate_presentation import (
     load_csv_rows,
     official_category_keys,
 )
+from manual_edits import load_manual_edits, split_comment
 from qualification import is_ano_value
 from utils import bez_diakritiky, normalizuj
 
@@ -118,27 +118,13 @@ def _split_name(full_name: str) -> tuple:
     return " ".join(parts[:-1]), parts[-1]
 
 
-def load_manual_edits(path: Path) -> List[tuple]:
-    """Nacte rucni-upravy.txt -> [(line_no, akce, [pole...], puvodni_radek)]."""
-    if not path.is_file():
-        return []
-    edits = []
-    for line_no, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        line = raw.split("#", 1)[0].strip()
-        if not line:
-            continue
-        fields = [f.strip() for f in line.split("|")]
-        edits.append((line_no, fields[0].upper(), fields[1:], raw.strip()))
-    return edits
-
-
 def apply_manual_edits(
     filtered: List[dict], all_rows: List[dict], edits: List[tuple], source: Path
 ) -> List[str]:
     """Aplikuje rucni upravy na seznam postupujicich. Vraci seznam chyb."""
     errors: List[str] = []
     known_categories = {_norm(r.get("Kategorie", "")): r.get("Kategorie", "") for r in all_rows}
-    expected = {"PRESUN": 3, "PRIDAT": 3, "ODEBRAT": 2}
+    expected = {"PRESUN": 3, "PRIDAT": 3, "ODEBRAT": 2, "PRESTUP": 3}
 
     def err(line_no: int, raw: str, msg: str) -> None:
         errors.append(f"{source.name}:{line_no}: {msg}\n    {raw}")
@@ -158,6 +144,16 @@ def apply_manual_edits(
             continue
         if len(fields) != expected[action] or not all(fields):
             err(line_no, raw, f"{action} ocekava {expected[action]} pole oddelena '|'")
+            continue
+
+        if action == "PRESTUP":
+            # klub uz zmenila agregace vysledku - tady jen oznacit radky
+            name, old_club, new_club = fields
+            for row in filtered:
+                if _full_name(row) == _norm(name) and not row.get("Uprava"):
+                    row["Uprava"] = "prestup"
+                    row["Prestup_z"] = old_club
+            print(f"Rucni uprava: {raw}")
             continue
 
         if action == "PRESUN":
@@ -247,10 +243,8 @@ MANUAL_EDIT_LABELS = {
     "PRESUN": "Přesun",
     "PRIDAT": "Doplnění",
     "ODEBRAT": "Vyřazení",
+    "PRESTUP": "Přestup",
 }
-
-_DATE_RE = re.compile(r"[,;\s]*(\d{1,2}\.\s?\d{1,2}\.\s?\d{4})\s*$")
-
 
 def describe_manual_edits(
     csv_path: Path = EXCEL_CSV,
@@ -267,12 +261,7 @@ def describe_manual_edits(
     for _line_no, action, fields, raw in load_manual_edits(manual_path):
         if action not in MANUAL_EDIT_LABELS or not fields:
             continue
-        comment = raw.split("#", 1)[1].strip() if "#" in raw else ""
-        date = ""
-        match = _DATE_RE.search(comment)
-        if match:
-            date = match.group(1).replace(" ", "")
-            comment = comment[: match.start()].strip()
+        comment, date = split_comment(raw)
         name = fields[0]
         item = {
             "akce": action,
@@ -290,5 +279,8 @@ def describe_manual_edits(
             item["do"], item["klub"] = fields[1], fields[2]
         elif action == "ODEBRAT" and len(fields) >= 2:
             item["z"] = fields[1]
+        elif action == "PRESTUP" and len(fields) >= 3:
+            item["z"], item["do"] = fields[1], fields[2]
+            item["klub"] = fields[2]
         items.append(item)
     return items

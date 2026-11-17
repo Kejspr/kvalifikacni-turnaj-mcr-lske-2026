@@ -24,11 +24,11 @@ from pathlib import Path
 
 from config import (
     AGGREGATED_XML,
-    ATHLETE_CLUB_TRANSFERS,
     BASE_DIR,
     TOURNAMENT_TITLE,
     WORKING_DIR,
 )
+from manual_edits import load_transfers, norm_text
 from nomination_io import ensure_nomination_files
 from utils import (
     bez_diakritiky,
@@ -254,6 +254,36 @@ def apply_current_clubs(category_data: dict, current_clubs: dict) -> None:
                 _date, athlete["club"], athlete["club_id"] = latest
 
 
+def apply_manual_transfers(current_clubs: dict, all_results: list[dict]) -> None:
+    """PRESTUP z rucni-upravy.txt: prestup, ktery ve vysledcich neni (napr. po vsech kolech).
+
+    Zavodnik se hleda podle jmena a klubu z posledniho kola, ktery musi odpovidat
+    puvodnimu klubu v radku PRESTUP - jinak chyba (nic se tise neprepise).
+    """
+    latest_club_ids: dict = {}
+    for row in sorted(all_results, key=lambda r: (r["tournament_date"] or "")):
+        if row["club"]:
+            latest_club_ids[norm_text(row["club"])] = row["club_id"]
+
+    for transfer in load_transfers():
+        name = norm_text(transfer["zavodnik"])
+        old_club = norm_text(transfer["z"])
+        keys = [
+            key for key, (_date, club, _club_id) in current_clubs.items()
+            if norm_text(f"{key[0]} {key[1]}") == normalizuj(transfer["zavodnik"])
+            and norm_text(club) == old_club
+        ]
+        if not keys:
+            raise SystemExit(
+                f"rucni-upravy.txt:{transfer['line_no']}: PRESTUP - '{transfer['zavodnik']}'"
+                f" nenalezen ve vysledcich s klubem '{transfer['z']}'\n    {transfer['raw']}"
+            )
+        club_id = latest_club_ids.get(norm_text(transfer["do"]), "")
+        for key in keys:
+            current_clubs[key] = ("9999-99-99", transfer["do"], club_id)
+        print(f"Prestup (rucni uprava): {transfer['zavodnik']}: {transfer['z']} -> {transfer['do']}")
+
+
 def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
     category_data = defaultdict(lambda: defaultdict(lambda: {
         "competitor_ids": set(),
@@ -310,8 +340,7 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
 
     merge_duplicate_athletes(category_data)
     current_clubs = build_current_club_index(all_results)
-    for key, (club, club_id) in ATHLETE_CLUB_TRANSFERS.items():
-        current_clubs[key] = ("9999-99-99", club, club_id)  # prestup po vsech kolech
+    apply_manual_transfers(current_clubs, all_results)
     apply_current_clubs(category_data, current_clubs)
 
     root = ET.Element("tournament")
