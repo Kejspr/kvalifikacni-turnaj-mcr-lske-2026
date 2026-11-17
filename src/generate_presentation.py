@@ -589,6 +589,30 @@ def build_color_key_html(disciplines: List[str]) -> str:
     )
 
 
+SCROLL_NAV_SCRIPT = """
+(function () {
+  var topBtn = document.getElementById("scroll-top");
+  var bottomBtn = document.getElementById("scroll-bottom");
+  if (!topBtn || !bottomBtn) return;
+  var smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function go(y) { window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" }); }
+  topBtn.addEventListener("click", function () { go(0); });
+  bottomBtn.addEventListener("click", function () { go(document.documentElement.scrollHeight); });
+  function update() {
+    var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    topBtn.hidden = y < 300;
+    bottomBtn.hidden = max - y < 300;
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  document.querySelectorAll(".tab-btn").forEach(function (b) {
+    b.addEventListener("click", function () { setTimeout(update, 0); });
+  });
+  update();
+})();
+"""
+
 COLOR_KEY_SCRIPT = """
 (function () {
   var mainSelect = document.getElementById("filter-main");
@@ -1187,7 +1211,8 @@ def generate_html(
         f"  <script>{FILTER_SCRIPT}</script>\n"
         f"  <script>{COPY_NOMINATION_SCRIPT}</script>\n"
         f"  <script>{TABS_SCRIPT}</script>\n"
-        f"  <script>{COLOR_KEY_SCRIPT}</script>"
+        f"  <script>{COLOR_KEY_SCRIPT}</script>\n"
+        f"  <script>{SCROLL_NAV_SCRIPT}</script>"
     )
 
     # Finalni postupujici - stejny vypocet jako final-postupujici.* (lazy import:
@@ -1345,6 +1370,19 @@ def generate_html(
     .dl-btn:hover {{ background: #303f9f; }}
     .dl-btn:focus-visible {{ outline: 2px solid #3949ab; outline-offset: 2px; }}
     .dl-note {{ font-size: 13px; color: #666; }}
+    .scroll-nav {{
+      position: fixed; right: 20px; bottom: 20px; z-index: 50;
+      display: flex; flex-direction: column; gap: 8px;
+    }}
+    .scroll-btn {{
+      width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+      background: #3949ab; color: white; font-size: 20px; font-weight: 700; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25); opacity: 0.85;
+    }}
+    .scroll-btn:hover {{ opacity: 1; background: #303f9f; }}
+    .scroll-btn:focus-visible {{ outline: 2px solid #1a237e; outline-offset: 2px; opacity: 1; }}
+    @media print {{ .scroll-nav {{ display: none; }} }}
+    @media (max-width: 520px) {{ .scroll-nav {{ right: 12px; bottom: 12px; }} }}
     .final-list {{
       display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px;
     }}
@@ -1480,6 +1518,10 @@ def generate_html(
     {legend_html}
     </div>
     {final_tab_html}
+  </div>
+  <div class="scroll-nav" aria-label="Rychlý přesun">
+    <button type="button" class="scroll-btn" id="scroll-top" title="Nahoru na začátek stránky" aria-label="Nahoru na začátek stránky" hidden>↑</button>
+    <button type="button" class="scroll-btn" id="scroll-bottom" title="Dolů na konec stránky" aria-label="Dolů na konec stránky">↓</button>
   </div>
 {tail_scripts}
 </body>
