@@ -435,9 +435,7 @@ FILTER_SCRIPT = """
     if (onlyClub) parts.push("jen vybraný klub");
     if (onlyPostup) parts.push("jen postupy");
     if (onlyRemiza) parts.push("jen remízy");
-    if (!showUnofficial && officialMode !== "unofficial") parts.push("bez mimo offic. kategorie");
-    if (officialMode === "unofficial") parts.push("jen mimo offic. kategorie");
-    if (officialMode === "official") parts.push("jen oficiální");
+    if (!showUnofficial) parts.push("bez mimo offic. kategorie");
     parts.push("Postupuje: " + postupuje);
     parts.push("Remízy: " + remiza);
     parts.push("Čekatelé: " + cekatele);
@@ -570,6 +568,165 @@ def build_color_key_html(disciplines: List[str]) -> str:
         f"</div>"
         f"</div>"
         f"</section>"
+    )
+
+
+FINAL_TAB_HASH = "finalni-postupujici"
+
+TABS_SCRIPT = """
+(function () {
+  var tabs = document.querySelectorAll(".tab-btn");
+  var panels = {
+    results: document.getElementById("main-content"),
+    final: document.getElementById("final-tab")
+  };
+  function show(name) {
+    Object.keys(panels).forEach(function (key) {
+      if (panels[key]) panels[key].hidden = key !== name;
+    });
+    tabs.forEach(function (btn) {
+      var active = btn.dataset.tab === name;
+      btn.classList.toggle("tab-active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  }
+  tabs.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      show(btn.dataset.tab);
+      try {
+        var url = btn.dataset.tab === "final"
+          ? "#" + FINAL_HASH
+          : location.pathname + location.search;
+        history.replaceState(null, "", url);
+      } catch (e) { /* napr. otevreno ze souboru - zalozka funguje i bez URL */ }
+    });
+  });
+  show(location.hash === "#" + FINAL_HASH ? "final" : "results");
+
+  var clubSelect = document.getElementById("final-club");
+  var summary = document.getElementById("final-summary");
+  function applyFinalFilter() {
+    var club = clubSelect ? clubSelect.value : "";
+    var people = 0, cats = 0;
+    document.querySelectorAll("#final-tab .final-category").forEach(function (section) {
+      var visible = 0;
+      section.querySelectorAll("tbody tr").forEach(function (row) {
+        var show = !club || row.dataset.club === club;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+      section.hidden = visible === 0;
+      var count = section.querySelector(".final-count");
+      if (count) count.textContent = "(" + visible + ")";
+      if (visible) { cats += 1; people += visible; }
+    });
+    if (summary) {
+      summary.textContent = "Celkem postupujících: " + people + " | Kategorií: " + cats +
+        (club ? " | Klub: " + club : "");
+    }
+  }
+  if (clubSelect) clubSelect.addEventListener("change", applyFinalFilter);
+  applyFinalFilter();
+})();
+""".replace("FINAL_HASH", '"' + FINAL_TAB_HASH + '"')
+
+
+def build_manual_edits_html(items: List[dict]) -> str:
+    """Prehled rucnich uprav (rucni-upravy.txt) pod finalnim seznamem."""
+    if not items:
+        return ""
+    cards = []
+    for item in items:
+        if item["akce"] == "PRESUN":
+            change = (
+                f'<span class="me-cat me-cat-old">{escape_html(item["z"])}</span>'
+                '<span class="me-arrow" aria-hidden="true">→</span>'
+                f'<span class="me-cat">{escape_html(item["do"])}</span>'
+            )
+        elif item["akce"] == "PRIDAT":
+            change = (
+                '<span class="me-arrow" aria-hidden="true">+</span>'
+                f'<span class="me-cat">{escape_html(item["do"])}</span>'
+            )
+        else:
+            change = f'<span class="me-cat me-cat-old">{escape_html(item["z"])}</span>'
+        reason = (
+            f'<p class="me-reason">{escape_html(item["duvod"])}</p>' if item["duvod"] else ""
+        )
+        date = f'<span class="me-date">{escape_html(item["datum"])}</span>' if item["datum"] else ""
+        cards.append(
+            f'<li class="me-card me-{item["akce"].lower()}">'
+            '<div class="me-top">'
+            f'<span class="me-type">{escape_html(item["typ"])}</span>{date}'
+            "</div>"
+            f'<p class="me-name">{escape_html(item["zavodnik"])}'
+            f'<span class="me-club">{escape_html(item["klub"])}</span></p>'
+            f'<p class="me-change">{change}</p>'
+            f"{reason}"
+            "</li>"
+        )
+    return (
+        '<section class="manual-edits" id="rucni-upravy">'
+        "<h2>Ruční úpravy seznamu</h2>"
+        '<p class="final-intro">Změny oproti pořadí z výsledků, provedené na žádost klubů. '
+        "V seznamu výše jsou označené štítkem <span class=\"final-badge\">ruční úprava</span>.</p>"
+        f'<ul class="me-list">{"".join(cards)}</ul>'
+        "</section>"
+    )
+
+
+def build_final_tab_html(final_rows: List[dict], manual_items: List[dict] | None = None) -> str:
+    """Zalozka s konecnym seznamem postupujicich (stejna data jako final-postupujici.pdf)."""
+    by_category: OrderedDict[str, List[dict]] = OrderedDict()
+    for row in final_rows:
+        by_category.setdefault(row["Kategorie"], []).append(row)
+    clubs = sorted({row["Klub"] for row in final_rows})
+
+    badge_titles = {
+        "presun": "Rucne presunuto z jine kategorie",
+        "pridat": "Rucne doplneno mimo poradi",
+    }
+    sections = []
+    for category, rows in by_category.items():
+        body = []
+        for row in rows:
+            uprava = row.get("Uprava", "")
+            badge = (
+                f' <span class="final-badge" title="{escape_html(badge_titles[uprava])}">ruční úprava</span>'
+                if uprava in badge_titles else ""
+            )
+            body.append(
+                f'<tr data-club="{escape_html(row["Klub"])}">'
+                f'<td>{escape_html(row["Jmeno"])} {escape_html(row["Prijmeni"])}{badge}</td>'
+                f'<td>{escape_html(row["Klub"])}</td></tr>'
+            )
+        disciplina = discipline_from_category(category)
+        sections.append(
+            f'<section class="final-category" data-discipline="{escape_html(disciplina)}">'
+            f'<h3>{escape_html(category)} <span class="final-count">({len(rows)})</span></h3>'
+            "<table><thead><tr><th>Závodník</th><th>Klub</th></tr></thead>"
+            f"<tbody>{''.join(body)}</tbody></table></section>"
+        )
+
+    club_options = "".join(
+        f'<option value="{escape_html(club)}">{escape_html(club)}</option>' for club in clubs
+    )
+    return (
+        '<div id="final-tab" hidden>'
+        '<section class="final-head">'
+        "<h2>Finální postupující na nominační turnaj</h2>"
+        '<p class="final-intro">Konečný seznam po nominacích klubů a ručních úpravách. '
+        "Jen oficiální kategorie ČSKe, seřazeno KATA → KUMITE podle věku. "
+        "Stejná data jako PDF exportu.</p>"
+        '<div class="final-controls">'
+        '<div class="filter-field"><label for="final-club">Klub</label>'
+        f'<select id="final-club"><option value="">Vše</option>{club_options}</select></div>'
+        f'<p class="final-summary" id="final-summary">Celkem postupujících: {len(final_rows)}'
+        f" | Kategorií: {len(by_category)}</p>"
+        "</div></section>"
+        f'<div class="final-list">{"".join(sections)}</div>'
+        f"{build_manual_edits_html(manual_items or [])}"
+        "</div>"
     )
 
 
@@ -892,8 +1049,20 @@ def generate_html(
     tail_scripts = (
         f"  <script>window.PRESENTATION_FILTER_DATA = {filter_json};</script>\n"
         f"  <script>{FILTER_SCRIPT}</script>\n"
-        f"  <script>{COPY_NOMINATION_SCRIPT}</script>"
+        f"  <script>{COPY_NOMINATION_SCRIPT}</script>\n"
+        f"  <script>{TABS_SCRIPT}</script>"
     )
+
+    # Finalni postupujici - stejny vypocet jako final-postupujici.* (lazy import:
+    # final_list importuje z tohoto modulu)
+    from final_list import compute_final_list, describe_manual_edits
+
+    final_rows, final_errors = compute_final_list(csv_path)
+    if final_errors:
+        raise SystemExit(
+            "Chyba v rucnich upravach - web NEvygenerovan:\n  " + "\n  ".join(final_errors)
+        )
+    final_tab_html = build_final_tab_html(final_rows, describe_manual_edits(csv_path))
 
     html = f"""<!DOCTYPE html>
 <html lang="cs">
@@ -995,6 +1164,76 @@ def generate_html(
     }}
     .copy-nomination-btn:hover {{ background: #e8eaf6; }}
     .copy-nomination-btn.copy-nomination-ok {{ background: #c8e6c9; border-color: #81c784; }}
+    .tabs {{ display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }}
+    .tab-btn {{
+      font: inherit; font-weight: 600; padding: 10px 18px; border-radius: 10px; cursor: pointer;
+      border: 1px solid #c5cae9; background: white; color: #3949ab;
+    }}
+    .tab-btn:hover {{ background: #e8eaf6; }}
+    .tab-btn.tab-active {{ background: #3949ab; border-color: #3949ab; color: white; }}
+    .tab-count {{
+      display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px;
+      background: rgba(57,73,171,0.12); font-size: 12px;
+    }}
+    .tab-btn.tab-active .tab-count {{ background: rgba(255,255,255,0.25); }}
+    [hidden] {{ display: none !important; }}
+    .final-head {{
+      background: white; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }}
+    .final-head h2 {{ margin: 0 0 6px; font-size: 22px; color: #3949ab; }}
+    .final-intro {{ margin: 0 0 12px; font-size: 14px; color: #555; }}
+    .final-controls {{ display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }}
+    .final-controls .filter-field {{ flex: 0 1 360px; }}
+    .final-summary {{ margin: 0 0 8px; font-weight: 600; }}
+    .final-list {{
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px;
+    }}
+    .final-category {{
+      background: white; border-radius: 12px; padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #3949ab;
+    }}
+    .final-category h3 {{ margin: 0 0 8px; font-size: 16px; }}
+    .final-count {{ color: #777; font-weight: normal; font-size: 14px; }}
+    .final-badge {{
+      display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 6px;
+      background: #fff3e0; color: #e65100; font-size: 11px; font-weight: 600; vertical-align: middle;
+    }}
+    .manual-edits {{
+      background: white; border-radius: 12px; padding: 16px 20px; margin-top: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); scroll-margin-top: 24px;
+    }}
+    .manual-edits h2 {{ margin: 0 0 6px; font-size: 20px; color: #3949ab; }}
+    .me-list {{
+      list-style: none; margin: 0; padding: 0; display: grid; gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }}
+    .me-card {{
+      border: 1px solid #e0e0e0; border-left: 4px solid #3949ab; border-radius: 10px;
+      padding: 12px 14px; background: #fafbff;
+    }}
+    .me-card.me-presun {{ border-left-color: #1e88e5; }}
+    .me-card.me-pridat {{ border-left-color: #2e7d32; }}
+    .me-card.me-odebrat {{ border-left-color: #c62828; }}
+    .me-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }}
+    .me-type {{
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 2px 8px; border-radius: 6px; background: #e3f2fd; color: #1565c0;
+    }}
+    .me-pridat .me-type {{ background: #e8f5e9; color: #2e7d32; }}
+    .me-odebrat .me-type {{ background: #ffebee; color: #c62828; }}
+    .me-date {{ font-size: 12px; color: #777; }}
+    .me-name {{ margin: 0 0 6px; font-weight: 700; font-size: 15px; }}
+    .me-club {{ display: block; font-weight: normal; font-size: 13px; color: #666; }}
+    .me-change {{ margin: 0 0 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; }}
+    .me-cat {{ background: #eef2ff; padding: 2px 8px; border-radius: 6px; }}
+    .me-cat-old {{ text-decoration: line-through; color: #777; background: #f5f5f5; }}
+    .me-arrow {{ font-weight: 700; color: #3949ab; }}
+    .me-reason {{ margin: 0; font-size: 13px; color: #444; line-height: 1.4; }}
+    @media (max-width: 520px) {{
+      .container {{ padding: 16px; }}
+      .final-list, .me-list {{ grid-template-columns: 1fr; }}
+    }}
   </style>
 </head>
 <body>
@@ -1010,6 +1249,10 @@ def generate_html(
       </div>
     </header>
     {login_html}
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab-btn tab-active" data-tab="results" role="tab" aria-selected="true">Výsledky</button>
+      <button type="button" class="tab-btn" data-tab="final" role="tab" aria-selected="false">Finální postupující <span class="tab-count">{len(final_rows)}</span></button>
+    </nav>
     {content_open}
     <section class="filters">
       <div class="filters-row">
@@ -1055,6 +1298,7 @@ def generate_html(
     {''.join(discipline_html)}
     {legend_html}
     </div>
+    {final_tab_html}
   </div>
 {tail_scripts}
 </body>

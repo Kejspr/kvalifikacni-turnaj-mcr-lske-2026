@@ -1,5 +1,7 @@
-# Rucni upravy FINALNIHO EXPORTU (final-postupujici.*)
-# Vysledky, nominace ani web (docs/index.html) se NEMENI - jen vystupni seznam.
+# Rucni upravy FINALNIHO SEZNAMU POSTUPUJICICH
+# Plati pro final-postupujici.* (PDF) i zalozku "Finalni postupujici" na webu,
+# kde se pod seznamem zobrazi i s duvodem (komentar) a datem.
+# Vysledky ani nominace se NEMENI.
 #
 # Format - jeden radek = jedna uprava, pole oddelena znakem |
 #   PRESUN  | Jmeno Prijmeni | PUVODNI KATEGORIE | NOVA KATEGORIE
@@ -7,9 +9,9 @@
 #   ODEBRAT | Jmeno Prijmeni | KATEGORIE
 #
 # Kategorie piste presne jako ve sloupci Kategorie v results-for-excel.csv.
-# Text za # je komentar (zdroj, datum).
+# Text za # je komentar = duvod/zdroj, na konci datum (dd.mm.rrrr) - zobrazi se na webu.
 
-PRESUN | Adéla Kočová | KUMITE dívky U12 -30 kg | KUMITE dívky U12 -35 kg   # email Pepa (SSC Česká Lípa), 15.11.2026
+PRESUN | Adéla Kočová | KUMITE dívky U12 -30 kg | KUMITE dívky U12 -35 kg   # Žádost SSC Česká Lípa (e-mail), změna váhové kategorie, 15.11.2026
 # Vyrizeno primo pres nominations-declined/SKK: Jakub Michalec - KUMITE chlapci U14 +55 kg
-PRESUN | Filip Janovics | KUMITE chlapci U14 -55 kg | KUMITE chlapci U14 +55 kg   # SKK Liberec: presun na uvolnene misto po Michalcovi, 15.11.2026
-PRIDAT | Filip Hoffmann | KUMITE junioři -61 kg | GRYF z.s.   # GRYF (T. Reyneltova): nominace navic, kategorie za kraj prazdna, 15.11.2026
+PRESUN | Filip Janovics | KUMITE chlapci U14 -55 kg | KUMITE chlapci U14 +55 kg   # Žádost SK Karate Shotokan Liberec: přesun na místo uvolněné po J. Michalcovi, 15.11.2026
+PRIDAT | Filip Hoffmann | KUMITE junioři -61 kg | GRYF z.s.   # Žádost GRYF: nominace navíc, v kategorii za kraj nikdo nepostupuje, 15.11.2026
