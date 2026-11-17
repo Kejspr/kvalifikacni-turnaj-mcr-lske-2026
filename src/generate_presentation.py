@@ -87,6 +87,8 @@ def build_xml_enrichment(xml_path: Path) -> Dict[Tuple[str, str, str], dict]:
                 "silver": xml_text(result, "silver_medals") or "0",
                 "bronze": xml_text(result, "bronze_medals") or "0",
                 "rounds": ", ".join(rounds_parts),
+                "transfer_from": xml_text(result, "transfer_from"),
+                "transfer_date": xml_text(result, "transfer_date"),
             }
 
     return enrichment
@@ -816,7 +818,15 @@ def build_final_tab_html(final_rows: List[dict], manual_items: List[dict] | None
         f'<select id="final-club"><option value="">Vše</option>{club_options}</select></div>'
         f'<p class="final-summary" id="final-summary">Celkem postupujících: {len(final_rows)}'
         f" | Kategorií: {len(by_category)}</p>"
-        "</div></section>"
+        "</div>"
+        '<div class="final-downloads">'
+        '<a class="dl-btn" href="final-postupujici.pdf" download>'
+        '<span aria-hidden="true">⬇</span> Stáhnout PDF</a>'
+        '<a class="dl-btn" href="final-postupujici.txt" download>'
+        '<span aria-hidden="true">⬇</span> Stáhnout TXT</a>'
+        '<span class="dl-note">Celý oficiální seznam (bez ohledu na filtr klubu).</span>'
+        "</div>"
+        "</section>"
         f'{"".join(groups)}'
         f"{build_manual_edits_html(manual_items or [])}"
         "</div>"
@@ -929,10 +939,24 @@ def generate_html(
 
     transfers = {normalizuj(t["zavodnik"]): t for t in load_transfers()}
 
-    def transfer_badge(firstname: str, lastname: str, club: str) -> str:
+    def transfer_badge(firstname: str, lastname: str, club: str, extra: dict | None = None) -> str:
         transfer = transfers.get(normalizuj(f"{firstname} {lastname}"))
         if not transfer or normalizuj(club) != normalizuj(transfer["do"]):
-            return ""
+            # prestup behem sezony zjisteny automaticky z vysledku
+            previous = (extra or {}).get("transfer_from", "")
+            if not previous:
+                return ""
+            since = (extra or {}).get("transfer_date", "")
+            tip = f"Přestup během sezóny (podle výsledků): dříve {previous}"
+            if since:
+                parts = since.split("-")
+                if len(parts) == 3 and all(p.isdigit() for p in parts):
+                    since = f"{int(parts[2])}. {int(parts[1])}. {parts[0]}"
+                tip += f", za {club} od kola {since}"
+            return (
+                f' <span class="transfer-badge" title="{escape_html(tip)}">'
+                f'přestup <span class="transfer-from">z {escape_html(previous)}</span></span>'
+            )
         tip = f"Ruční úprava: přestup, dříve {transfer['z']}"
         if transfer["duvod"]:
             tip += f" – {transfer['duvod']}"
@@ -1074,7 +1098,7 @@ def generate_html(
                 f" data-postup-kraje=\"{escape_html(postup_z_kraje)}\">"
                 f"<td>{escape_html(row.get('Pořadí', ''))}</td>"
                 f"<td><strong>{escape_html(firstname)} {escape_html(lastname)}</strong></td>"
-                f"<td>{escape_html(club)}{transfer_badge(firstname, lastname, club)}</td>"
+                f"<td>{escape_html(club)}{transfer_badge(firstname, lastname, club, extra)}</td>"
                 f"<td>{escape_html(row.get('Celkem', ''))}</td>"
                 f"<td>{''.join(medals)}</td>"
                 f"<td>{escape_html(rounds_text)}</td>"
@@ -1310,13 +1334,23 @@ def generate_html(
     .final-controls {{ display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }}
     .final-controls .filter-field {{ flex: 0 1 360px; }}
     .final-summary {{ margin: 0 0 8px; font-weight: 600; }}
+    .final-downloads {{
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid #eee;
+    }}
+    .dl-btn {{
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px;
+      background: #3949ab; color: white; text-decoration: none; font-weight: 600; font-size: 14px;
+    }}
+    .dl-btn:hover {{ background: #303f9f; }}
+    .dl-btn:focus-visible {{ outline: 2px solid #3949ab; outline-offset: 2px; }}
+    .dl-note {{ font-size: 13px; color: #666; }}
     .final-list {{
       display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px;
     }}
     .final-discipline {{
       --disc-accent: #3949ab; --disc-bg: #e8eaf6;
-      background: linear-gradient(90deg, var(--disc-bg) 0%, #ffffff 48px);
-      border-left: 6px solid var(--disc-accent); border-radius: 12px;
+      background: white; border-radius: 12px;
       padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }}
     .final-discipline-title {{ margin: 0 0 12px; font-size: 22px; color: var(--disc-accent); }}

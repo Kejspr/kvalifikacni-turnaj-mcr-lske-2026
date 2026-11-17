@@ -7,7 +7,7 @@ CHROME ?= /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 PAGES_URL = https://kejspr.github.io/kvalifikacni-turnaj-mcr-lske-2026/
 PUBLISH_MSG ?= Aktualizace vysledku
 
-.PHONY: help deploy deploy-site build pages validate fix aggregate excel verify-nominations final-export pdf git-push publish all vse deploy-pages
+.PHONY: help deploy deploy-site build pages validate fix aggregate excel verify-nominations final-export pdf docs-downloads git-push publish all vse deploy-pages
 
 help:
 	@echo "Kvalifikacni turnaj MCR Beginner - LSKe (GitHub Pages)"
@@ -22,6 +22,7 @@ help:
 	@echo "  make excel                CSV + Postupuje + nomination log"
 	@echo "  make final-export         konecny seznam postupujicich (CSV, TSV, TXT, HTML)"
 	@echo "  make pdf                  final-postupujici.pdf z HTML (Chrome headless)"
+	@echo "  make docs-downloads       zkopiruje PDF + TXT do docs/ (ke stazeni na webu)"
 	@echo "  make pages                HTML -> docs/index.html (vyzaduje excel)"
 	@echo "  make verify-nominations   kontrola nominations/*.txt"
 	@echo ""
@@ -37,7 +38,7 @@ deploy: validate fix aggregate deploy-site git-push
 	@echo ""
 	@echo "Deploy hotovo: $(PAGES_URL) (po dokonceni Actions)"
 
-deploy-site: excel final-export pdf pages verify-nominations
+deploy-site: excel final-export pdf docs-downloads pages verify-nominations
 
 build: validate fix aggregate excel
 	@echo ""
@@ -76,6 +77,13 @@ pdf: final-export
 		echo "PDF: $(FINAL_PDF) (+ kopie final-postupujici.pdf)"; \
 	fi
 
+# Oficialni finalni seznam ke stazeni na webu (GitHub Pages zverejnuje jen docs/)
+docs-downloads: pdf
+	mkdir -p $(DOCS)
+	cp final-postupujici.txt $(DOCS)/final-postupujici.txt
+	@if [ -f $(FINAL_PDF) ]; then cp $(FINAL_PDF) $(DOCS)/final-postupujici.pdf; \
+	else echo "Pozor: $(FINAL_PDF) neexistuje - PDF na webu nebude aktualni"; fi
+
 verify-nominations:
 	$(PYTHON) $(SRC)/verify_categories.py
 
@@ -83,7 +91,7 @@ git-push:
 	@if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then \
 		echo "Chyba: neni git repo"; exit 1; \
 	fi
-	git add docs/index.html original/ nominations/ nominations-declined/ rucni-upravy.txt $(FINAL_PDF) final-postupujici.pdf src/ Makefile .github/
+	git add docs/ original/ nominations/ nominations-declined/ rucni-upravy.txt $(FINAL_PDF) final-postupujici.pdf src/ Makefile .github/
 	@if git diff --staged --quiet; then \
 		echo "Nic k publikovani - zadne zmeny"; \
 	else \

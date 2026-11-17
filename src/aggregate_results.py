@@ -240,7 +240,37 @@ def build_current_club_index(all_results: list[dict]) -> dict:
     return current_clubs
 
 
-def apply_current_clubs(category_data: dict, current_clubs: dict) -> None:
+def build_transfer_history(all_results: list[dict]) -> dict:
+    """Prestupy behem sezony podle vysledku: zavodnik ma v ruznych kolech jiny klub.
+
+    Vraci {klic zavodnika: {"from": klub pred prestupem, "date": prvni kolo za novy klub}}.
+    """
+    starts: dict = {}
+    for row in all_results:
+        if not row["club"]:
+            continue
+        key = (
+            normalizuj(row["firstname"]),
+            normalizuj(row["lastname"]),
+            (row["birthday"] or "").strip(),
+        )
+        starts.setdefault(key, set()).add(((row["tournament_date"] or "").strip(), row["club"]))
+
+    history = {}
+    for key, entries in starts.items():
+        ordered = sorted(entries)
+        if len({club for _date, club in ordered}) < 2:
+            continue
+        latest_club = ordered[-1][1]
+        # posledni klub pred novym klubem a prvni kolo za novy klub
+        idx = len(ordered) - 1
+        while idx > 0 and ordered[idx - 1][1] == latest_club:
+            idx -= 1
+        history[key] = {"from": ordered[idx - 1][1], "date": ordered[idx][0]}
+    return history
+
+
+def apply_current_clubs(category_data: dict, current_clubs: dict, transfer_history: dict | None = None) -> None:
     """Nastavi klub z posledniho kola bez prepisu historickych vysledku."""
     for athletes in category_data.values():
         for athlete in athletes.values():
@@ -252,6 +282,10 @@ def apply_current_clubs(category_data: dict, current_clubs: dict) -> None:
             latest = current_clubs.get(key)
             if latest:
                 _date, athlete["club"], athlete["club_id"] = latest
+            transfer = transfer_history.get(key) if transfer_history else None
+            if transfer and normalizuj(transfer["from"]) != normalizuj(athlete["club"]):
+                athlete["transfer_from"] = transfer["from"]
+                athlete["transfer_date"] = transfer["date"]
 
 
 def apply_manual_transfers(current_clubs: dict, all_results: list[dict]) -> None:
@@ -341,7 +375,7 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
     merge_duplicate_athletes(category_data)
     current_clubs = build_current_club_index(all_results)
     apply_manual_transfers(current_clubs, all_results)
-    apply_current_clubs(category_data, current_clubs)
+    apply_current_clubs(category_data, current_clubs, build_transfer_history(all_results))
 
     root = ET.Element("tournament")
     ET.SubElement(root, "id").text = "aggregated"
@@ -412,6 +446,10 @@ def build_aggregated_xml(all_results: list[dict], output_path: Path) -> dict:
             ET.SubElement(result_elem, "birthday").text = athlete["birthday"]
             ET.SubElement(result_elem, "club").text = athlete["club"]
             ET.SubElement(result_elem, "club_id").text = athlete["club_id"]
+            if athlete.get("transfer_from"):
+                # prestup behem sezony zjisteny z vysledku (stitek na webu)
+                ET.SubElement(result_elem, "transfer_from").text = athlete["transfer_from"]
+                ET.SubElement(result_elem, "transfer_date").text = athlete.get("transfer_date", "")
 
             points_text = str(int(athlete["total_points"])) if athlete["total_points"].is_integer() else str(athlete["total_points"])
             ET.SubElement(result_elem, "points").text = points_text
