@@ -11,6 +11,8 @@ Spusteni:
 """
 
 import argparse
+import re
+from datetime import datetime
 import csv
 import json
 import sys
@@ -26,6 +28,7 @@ from config import (
     EXCEL_CSV,
     PRESENTATION_HTML,
     QUALIFYING_PLACES,
+    WORKING_DIR,
 )
 from nomination_io import format_category_name, xml_text
 from qualification import is_ano_value
@@ -663,6 +666,65 @@ COLOR_KEY_SCRIPT = """
 """
 
 
+def load_rounds() -> List[Tuple[str, str]]:
+    """Kola, ze kterych se pocita (datum, nazev) - z pracovni/*.xml."""
+    rounds = []
+    for path in sorted(WORKING_DIR.glob("*.xml")):
+        try:
+            root = ET.parse(path).getroot()
+        except ET.ParseError:
+            continue
+        name = re.sub(r"(\d\.)(?=\S)", r"\1 ", xml_text(root, "name"))
+        rounds.append((xml_text(root, "date"), name))
+    return sorted(rounds)
+
+
+def format_cz_date(iso: str) -> str:
+    parts = iso.split("-")
+    if len(parts) == 3 and all(p.isdigit() for p in parts):
+        return f"{int(parts[2])}. {int(parts[1])}. {parts[0]}"
+    return iso
+
+
+def build_footer_html() -> str:
+    """Paticka: posledni aktualizace, zdroj dat, rychle odkazy."""
+    now = datetime.now()
+    updated = f"{now.day}. {now.month}. {now.year} {now:%H:%M}"
+    rounds = "".join(
+        f"<li><span class=\"footer-date\">{escape_html(format_cz_date(date))}</span> {escape_html(name)}</li>"
+        for date, name in load_rounds()
+    )
+    return (
+        '<footer class="site-footer">'
+        '<div class="footer-inner">'
+        '<div class="footer-col">'
+        "<h2>Aktualizace</h2>"
+        f'<p class="footer-updated">{escape_html(updated)}</p>'
+        '<p class="footer-muted">Datum a čas posledního vygenerování stránky.</p>'
+        "</div>"
+        '<div class="footer-col">'
+        "<h2>Zdroj dat</h2>"
+        f'<ul class="footer-rounds">{rounds}</ul>'
+        '<p class="footer-muted">Výsledky z '
+        '<a href="https://lske.karate-draw.cz" target="_blank" rel="noopener">lske.karate-draw.cz</a>, '
+        "nominace klubů a ruční úpravy.</p>"
+        "</div>"
+        '<div class="footer-col">'
+        "<h2>Odkazy</h2>"
+        '<ul class="footer-links">'
+        '<li><a href="#main-content" data-goto-tab="results">Výsledky</a></li>'
+        '<li><a href="#legenda-postupu" data-goto-tab="results">Legenda postupu</a></li>'
+        '<li><a href="#final-tab" data-goto-tab="final">Finální postupující</a></li>'
+        '<li><a href="#rucni-upravy" data-goto-tab="final">Ruční úpravy seznamu</a></li>'
+        '<li><a href="final-postupujici.pdf" download>Stáhnout PDF</a> · '
+        '<a href="final-postupujici.txt" download>TXT</a></li>'
+        "</ul>"
+        "</div>"
+        "</div>"
+        "</footer>"
+    )
+
+
 FINAL_TAB_HASH = "finalni-postupujici"
 
 TABS_SCRIPT = """
@@ -694,6 +756,20 @@ TABS_SCRIPT = """
     });
   });
   show(location.hash === "#" + FINAL_HASH ? "final" : "results");
+
+  // odkazy (napr. v paticce), ktere prepnou zalozku a posunou na cil
+  document.querySelectorAll("a[data-goto-tab]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var tab = link.dataset.gotoTab;
+      show(tab);
+      try {
+        history.replaceState(null, "", tab === "final" ? "#" + FINAL_HASH : location.pathname + location.search);
+      } catch (err) { /* napr. otevreno ze souboru */ }
+      var target = document.getElementById(link.getAttribute("href").slice(1));
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 
   var clubSelect = document.getElementById("final-club");
   var summary = document.getElementById("final-summary");
@@ -1224,6 +1300,7 @@ def generate_html(
         raise SystemExit(
             "Chyba v rucnich upravach - web NEvygenerovan:\n  " + "\n  ".join(final_errors)
         )
+    footer_html = build_footer_html()
     final_tab_html = build_final_tab_html(final_rows, describe_manual_edits(csv_path))
 
     html = f"""<!DOCTYPE html>
@@ -1382,6 +1459,23 @@ def generate_html(
     .scroll-btn:hover {{ opacity: 1; background: #303f9f; }}
     .scroll-btn:focus-visible {{ outline: 2px solid #1a237e; outline-offset: 2px; opacity: 1; }}
     @media print {{ .scroll-nav {{ display: none; }} }}
+    .site-footer {{ background: #283593; color: #e8eaf6; margin-top: 32px; }}
+    .footer-inner {{
+      max-width: 1400px; margin: 0 auto; padding: 28px 24px 36px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px 40px;
+    }}
+    .site-footer h2 {{
+      margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #c5cae9;
+    }}
+    .site-footer p {{ margin: 0 0 6px; }}
+    .footer-updated {{ font-size: 18px; font-weight: 700; color: white; }}
+    .footer-muted {{ font-size: 13px; color: #c5cae9; }}
+    .site-footer ul {{ list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 6px; font-size: 14px; }}
+    .footer-rounds li {{ display: grid; grid-template-columns: 88px 1fr; gap: 8px; }}
+    .footer-date {{ color: #c5cae9; white-space: nowrap; }}
+    .site-footer a {{ color: white; text-decoration: underline; text-underline-offset: 2px; }}
+    .site-footer a:hover {{ color: #fff59d; }}
+    .site-footer a:focus-visible {{ outline: 2px solid white; outline-offset: 2px; }}
     @media (max-width: 520px) {{ .scroll-nav {{ right: 12px; bottom: 12px; }} }}
     .final-list {{
       display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px;
@@ -1519,6 +1613,7 @@ def generate_html(
     </div>
     {final_tab_html}
   </div>
+  {footer_html}
   <div class="scroll-nav" aria-label="Rychlý přesun">
     <button type="button" class="scroll-btn" id="scroll-top" title="Nahoru na začátek stránky" aria-label="Nahoru na začátek stránky" hidden>↑</button>
     <button type="button" class="scroll-btn" id="scroll-bottom" title="Dolů na konec stránky" aria-label="Dolů na konec stránky">↓</button>
